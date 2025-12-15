@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Prime Solutions - Kenya's Premier Solar Provider</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #FFA500;
+            --secondary: #1E3A8A;
+            --dark: #0F172A;
+            --light: #F8FAFC;
+            --accent: #3B82F6;
+        }
+
+        body {
+            overflow-x: hidden;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+
+        /* Header and Navigation - NEW DESIGN */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            color: var(--primary);
+            font-size: 2.5rem;
+            filter: drop-shadow(0 0 5px rgba(255, 165, 0, 0.3));
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--dark);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 30px;
+            height: 24px;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--dark);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            position: absolute;
+        }
+
+        .hamburger span:nth-child(1) {
+            top: 0;
+        }
+
+        .hamburger span:nth-child(2) {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .hamburger span:nth-child(3) {
+            bottom: 0;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 50%;
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg);
+            bottom: 40%;
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            width: 250px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            padding: 1rem 0;
+            transform: translateX(150%);
+            transition: transform 0.4s ease;
+            z-index: 999;
+        }
+
+        .mobile-nav.active {
+            transform: translateX(0);
+        }
+
+        .mobile-nav a {
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border-bottom: 1px solid #f1f5f9;
+            text-transform: uppercase;
+        }
+
+        .mobile-nav a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-nav a:hover {
+            background-color: #f8fafc;
+            color: var(--primary);
+            padding-left: 2rem;
+        }
+
+        .close-area {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 998;
+            display: none;
+        }
+
+        .close-area.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 5%;
+            margin-top: 0;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .rotating-text-container {
+            height: 70px;
+            overflow: hidden;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .rotating-text {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            opacity: 0;
+            transform: translateY(100%);
+            animation: textRotate 6s infinite;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .rotating-text:nth-child(1) {
+            animation-delay: 0s;
+        }
+        .rotating-text:nth-child(2) {
+            animation-delay: 3s;
+        }
+
+        @keyframes textRotate {
+            0% {
+                opacity: 0;
+                transform: translateY(100%);
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            40% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            50% {
+                opacity: 0;
+                transform: translateY(-100%);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100%);
+            }
+        }
+
+        .features {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            justify-content: center;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .feature i {
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        .feature span {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .cta-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 165, 0, 0.3);
+        }
+
+        .cta-button:hover {
+            background-color: #e69500;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 165, 0, 0.4);
+        }
+
+        /* Brands Section */
+        .brands {
+            padding: 4rem 0;
+            background-color: white;
+            overflow: hidden;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--secondary);
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .brands-container {
+            display: flex;
+            animation: scroll 40s linear infinite;
+        }
+
+        .brand-item {
+            flex-shrink: 0;
+            width: 200px;
+            height: 100px;
+            margin: 0 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f8f8;
+            border-radius: 12px;
+            padding: 0 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--dark);
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 5%;
+            background-color: var(--light);
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+            line-height: 1.2;
+        }
+
+        .about-text p {
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Services Section - WITH SIDE CONTROLS */
+        .services {
+            padding: 6rem 5%;
+            background-color: white;
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: auto auto;
+            gap: 3rem;
+        }
+
+        .service-card {
+            background-color: var(--light);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-images {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .service-slider {
+            display: flex;
+            width: 500%;
+            height: 100%;
+            animation: serviceSlider 15s infinite;
+        }
+
+        .service-slider img {
+            width: 20%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes serviceSlider {
+            0%, 18% { transform: translateX(0); }
+            20%, 38% { transform: translateX(-20%); }
+            40%, 58% { transform: translateX(-40%); }
+            60%, 78% { transform: translateX(-60%); }
+            80%, 98% { transform: translateX(-80%); }
+            100% { transform: translateX(0); }
+        }
+
+        /* SIDE CONTROLS - Updated position */
+        .slider-controls {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 15px;
+            transform: translateY(-50%);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .slider-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--dark);
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            pointer-events: auto;
+        }
+
+        .slider-btn:hover {
+            background: white;
+            transform: scale(1.15);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-content {
+            padding: 2rem;
+        }
+
+        .service-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .service-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .service-features {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .service-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .service-feature i {
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 6rem 5%;
+            background-color: var(--secondary);
+            color: white;
+            text-align: center;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+        }
+
+        .stat-item h3 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .stat-item p {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 6rem 5%;
+            text-align: center;
+            background-color: var(--light);
+        }
+
+        .cta h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+            line-height: 1.2;
+        }
+
+        .cta p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 5rem 5% 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.8rem;
+            color: var(--primary);
+        }
+
+        .footer-column p, .footer-column a {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--primary);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .contact-item i {
+            color: var(--primary);
+            margin-top: 3px;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #999;
+            font-size: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .rotating-text {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .features {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .rotating-text {
+                font-size: 1.6rem;
+            }
+            
+            .rotating-text-container {
+                height: 60px;
+            }
+            
+            .brand-item {
+                width: 150px;
+                height: 80px;
+            }
+            
+            .service-images {
+                height: 250px;
+            }
+            
+            .slider-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+            
+            .stat-item h3 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .rotating-text {
+                font-size: 1.4rem;
+            }
+            
+            .cta h2 {
+                font-size: 2.2rem;
+            }
+            
+            .mobile-nav {
+                width: 200px;
+                right: 10px;
+            }
+            
+            .slider-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+                padding: 0 10px;
+            }
+            
+            .service-images {
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header and Navigation -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fas fa-sun logo-icon"></i>
+                <div class="logo-text">Solar Prime Solutions</div>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="product.html">Products</a>
+                <a href="project.html">Projects</a>
+                <a href="blogs.html">Blogs</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+        <div class="mobile-nav" id="mobileNav">
+            <a href="index.html">Home</a>
+            <a href="product.html">Products</a>
+            <a href="project.html">Projects</a>
+            <a href="blogs.html">Blogs</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="close-area" id="closeArea"></div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Get High-Quality Solar Products to Save Your Electricity Costs</h1>
+            <div class="rotating-text-container">
+                <div class="rotating-text">Kenya's Best Solar Dealers</div>
+                <div class="rotating-text">Serviced Over 10,000+ Customers</div>
+            </div>
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>0 KSh Billing</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>100% Electricity</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>100% Independence</span>
+                </div>
+            </div>
+            <button class="cta-button">Get a Quote</button>
+        </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section class="brands">
+        <h2 class="section-title">Trusted Brands We Work With</h2>
+        <div class="brands-container">
+            <div class="brand-item">Deye</div>
+            <div class="brand-item">Jinko Solar</div>
+            <div class="brand-item">Canadian Solar</div>
+            <div class="brand-item">Longi</div>
+            <div class="brand-item">Trina Solar</div>
+            <div class="brand-item">JA Solar</div>
+            <div class="brand-item">Victron Energy</div>
+            <div class="brand-item">Growatt</div>
+            <div class="brand-item">SMA</div>
+            <div class="brand-item">Fronius</div>
+            <div class="brand-item">Tesla</div>
+            <div class="brand-item">LG</div>
+            <div class="brand-item">Panasonic</div>
+            <div class="brand-item">SunPower</div>
+            <div class="brand-item">SolarEdge</div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-text">
+                <h2>Who We Are</h2>
+                <p>Founded in 2019, Solar Prime Solutions was inspired by the desire to provide high-quality solar products at affordable rates, helping clients reduce their electricity bills and avoid power outages.</p>
+                <p>We work with homeowners and businesses to offer tailor-made solar solutions for lighting, powering, pumping, and water heating needs. Our expertise extends to collaborating with various brands for inverters, batteries, and solar panels.</p>
+                <p>We also provide comprehensive consulting services that include system design, product recommendations, and professional installation to ensure optimal performance and maximum savings for our clients.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Solar Installation">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="products">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-container">
+            <!-- Products Card -->
+            <div class="service-card">
+                <div class="service-images">
+                    <div class="service-slider" id="products-slider">
+                        <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2058&q=80" alt="Solar Panels">
+                        <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Inverters">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2058&q=80" alt="Batteries">
+                        <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2058&q=80" alt="Solar Water Heaters">
+                        <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Solar Pumps">
+                    </div>
+                    <div class="slider-controls">
+                        <button class="slider-btn prev-btn" onclick="moveSlide('products-slider', -1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn next-btn" onclick="moveSlide('products-slider', 1)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="service-content">
+                    <h3>Products We Sell</h3>
+                    <p>Get affordable and high-quality solar products for all your energy needs.</p>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Affordable Pricing</span>
+                        </div>
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>High Quality Products</span>
+                        </div>
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Longer Lasting Performance</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Installation Card -->
+            <div class="service-card">
+                <div class="service-images">
+                    <div class="service-slider" id="installation-slider">
+                        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Installation 1">
+                        <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Installation 2">
+                        <img src="https://images.unsplash.com/photo-1597237154673-fff31741c9f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Installation 3">
+                        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Installation 4">
+                        <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Installation 5">
+                    </div>
+                    <div class="slider-controls">
+                        <button class="slider-btn prev-btn" onclick="moveSlide('installation-slider', -1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn next-btn" onclick="moveSlide('installation-slider', 1)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="service-content">
+                    <h3>Professional Installation</h3>
+                    <p>We provide you with the best technicians to set up and ensure everything is working perfectly.</p>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Certified Technicians</span>
+                        </div>
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Quick Installation</span>
+                        </div>
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Quality Assurance</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Consultation Card -->
+            <div class="service-card">
+                <div class="service-images">
+                    <div class="service-slider" id="consultation-slider">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Consultation 1">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2058&q=80" alt="Consultation 2">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Consultation 3">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2058&q=80" alt="Consultation 4">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Consultation 5">
+                    </div>
+                    <div class="slider-controls">
+                        <button class="slider-btn prev-btn" onclick="moveSlide('consultation-slider', -1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn next-btn" onclick="moveSlide('consultation-slider', 1)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="service-content">
+                    <h3>Expert Consultation</h3>
+                    <p>Free consultations and quotations from our experienced solar technicians.</p>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Free Assessment</span>
+                        </div>
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Customized Solutions</span>
+                        </div>
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Professional Advice</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <h3>100%</h3>
+                <p>Satisfied Clients</p>
+            </div>
+            <div class="stat-item">
+                <h3>10,000+</h3>
+                <p>Number of Clients</p>
+            </div>
+            <div class="stat-item">
+                <h3>1,000+</h3>
+                <p>Number of Projects</p>
+            </div>
+            <div class="stat-item">
+                <h3>100%</h3>
+                <p>Quality Products</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2>Switch to Solar Power & Save Up to 70% of Your Energy Bills</h2>
+        <p>With our reliable energy solutions, you can enjoy consistent power supply while significantly reducing your electricity costs. Join thousands of satisfied customers who have made the smart switch to solar.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Solar Prime Solutions</h3>
+                <p>Kenya's premier solar provider, delivering high-quality solar solutions since 2019. We're committed to helping you save on electricity costs while promoting sustainable energy.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="product.html">Products</a>
+                <a href="project.html">Projects</a>
+                <a href="blogs.html">Blogs</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-column">
+                <h3>Our Services</h3>
+                <a href="#products">Solar Products</a>
+                <a href="#installation">Professional Installation</a>
+                <a href="#consultation">Expert Consultation</a>
+                <a href="#maintenance">System Maintenance</a>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>0746 204 887</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>mugnuselectric42@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Plessey House, Uhuru Highway<br>P.O. Box 100250-00200<br>Nairobi, Kenya</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+        <p> &copy; 2023 Solar Prime <a href="admin.html" style="color:inherit;text-decoration:none;">S</a>olutions. All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobileNav');
+        const closeArea = document.getElementById('closeArea');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            closeArea.classList.toggle('active');
+        });
+
+        closeArea.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('active');
+            closeArea.classList.remove('active');
+        });
+
+        // Close mobile nav when clicking on links
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+                closeArea.classList.remove('active');
+            });
+        });
+
+        // Image Slider Controls
+        function moveSlide(sliderId, direction) {
+            const slider = document.getElementById(sliderId);
+            const currentTransform = getComputedStyle(slider).transform;
+            const matrix = new DOMMatrix(currentTransform);
+            const currentTranslateX = matrix.m41;
+            const slideWidth = slider.parentElement.offsetWidth;
+            const totalSlides = 5;
+            
+            let newTranslateX = currentTranslateX + (direction * slideWidth);
+            
+            // Prevent going beyond the first or last slide
+            if (newTranslateX > 0) newTranslateX = 0;
+            if (newTranslateX < -(slideWidth * (totalSlides - 1))) newTranslateX = -(slideWidth * (totalSlides - 1));
+            
+            slider.style.transform = `translateX(${newTranslateX}px)`;
+            slider.style.animation = 'none'; // Stop auto-sliding when manually controlled
+            
+            // Resume auto-sliding after 5 seconds
+            setTimeout(() => {
+                slider.style.animation = 'serviceSlider 15s infinite';
+            }, 5000);
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

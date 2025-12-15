@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login - Solar Prime Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 100%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .logo i {
+            color: #FFA500;
+            font-size: 2.5rem;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: #1E3A8A;
+        }
+
+        .logo span {
+            color: #FFA500;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .pin-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 24px;
+            text-align: center;
+            letter-spacing: 10px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            outline: none;
+        }
+
+        .pin-input:focus {
+            border-color: #FFA500;
+            box-shadow: 0 0 0 3px rgba(255,165,0,0.2);
+        }
+
+        .hint {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .error {
+            color: #dc3545;
+            margin-bottom: 20px;
+            min-height: 24px;
+            display: none;
+        }
+
+        .error.show {
+            display: block;
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, #FFA500, #e69500);
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,165,0,0.3);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .back-link {
+            color: #1E3A8A;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .back-link:hover {
+            color: #FFA500;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <i class="fas fa-sun"></i>
+            <h1>Solar <span>Prime</span></h1>
+        </div>
+        
+        <h2>Admin Access</h2>
+        <p>Enter PIN to access admin panel</p>
+        
+        <input type="password" 
+               id="pinInput" 
+               class="pin-input" 
+               maxlength="4" 
+               placeholder="****"
+               oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+        
+        <div class="hint">birth date</div>
+        
+        <div class="error" id="errorMessage">Incorrect PIN. Please try again.</div>
+        
+        <button class="login-btn" onclick="checkPin()">
+            <i class="fas fa-lock"></i> Access Admin Panel
+        </button>
+        
+        <a href="product.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Back to Products
+        </a>
+    </div>
+
+    <script>
+        // Default PIN (change this in production)
+        const ADMIN_PIN = "1234";
+        
+        function checkPin() {
+            const enteredPin = document.getElementById('pinInput').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Clear any previous error
+            errorMessage.classList.remove('show');
+            
+            // Check PIN length
+            if (enteredPin.length !== 4) {
+                errorMessage.textContent = "Please enter 4-digit PIN";
+                errorMessage.classList.add('show');
+                return;
+            }
+            
+            // Check if PIN matches
+            if (enteredPin === ADMIN_PIN) {
+                // Set login session
+                sessionStorage.setItem('adminLoggedIn', 'true');
+                sessionStorage.setItem('loginTime', Date.now());
+                
+                // Redirect to admin page
+                window.location.href = 'admin.html';
+            } else {
+                // Show error
+                errorMessage.textContent = "Incorrect PIN. Please try again.";
+                errorMessage.classList.add('show');
+                
+                // Clear input and focus
+                document.getElementById('pinInput').value = '';
+                document.getElementById('pinInput').focus();
+            }
+        }
+        
+        // Allow Enter key to submit
+        document.getElementById('pinInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPin();
+            }
+        });
+        
+        // Focus on input when page loads
+        document.getElementById('pinInput').focus();
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</body>
+</html>

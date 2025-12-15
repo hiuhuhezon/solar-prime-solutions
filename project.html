@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Solar Prime Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles - Consistent with other pages */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #FFA500;
+            --secondary: #1E3A8A;
+            --dark: #0F172A;
+            --light: #F8FAFC;
+            --accent: #3B82F6;
+        }
+
+        body {
+            overflow-x: hidden;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+
+        /* Header and Navigation - Consistent with other pages */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            color: var(--primary);
+            font-size: 2.5rem;
+            filter: drop-shadow(0 0 5px rgba(255, 165, 0, 0.3));
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--dark);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 30px;
+            height: 24px;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--dark);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            position: absolute;
+        }
+
+        .hamburger span:nth-child(1) {
+            top: 0;
+        }
+
+        .hamburger span:nth-child(2) {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .hamburger span:nth-child(3) {
+            bottom: 0;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 50%;
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg);
+            bottom: 40%;
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            width: 250px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            padding: 1rem 0;
+            transform: translateX(150%);
+            transition: transform 0.4s ease;
+            z-index: 999;
+        }
+
+        .mobile-nav.active {
+            transform: translateX(0);
+        }
+
+        .mobile-nav a {
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border-bottom: 1px solid #f1f5f9;
+            text-transform: uppercase;
+        }
+
+        .mobile-nav a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-nav a:hover {
+            background-color: #f8fafc;
+            color: var(--primary);
+            padding-left: 2rem;
+        }
+
+        .close-area {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 998;
+            display: none;
+        }
+
+        .close-area.active {
+            display: block;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 120px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Circular Carousel Section - Same as Products Page */
+        .carousel-section {
+            margin-bottom: 4rem;
+            position: relative;
+            padding: 1rem 0;
+        }
+
+        .carousel-container {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            margin: 0 auto;
+            max-width: 1200px;
+            border-radius: 20px;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            pointer-events: none;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .category-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.8);
+        }
+
+        .category-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2.5rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            color: white;
+        }
+
+        .category-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .category-content p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 800px;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+            z-index: 10;
+        }
+
+        .carousel-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.3rem;
+            color: var(--dark);
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ddd;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-dot.active {
+            background-color: var(--primary);
+            transform: scale(1.2);
+        }
+
+        /* Projects Grid */
+        .projects-intro {
+            text-align: center;
+            margin: 4rem 0;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(255, 165, 0, 0.1), rgba(30, 58, 138, 0.1));
+            border-radius: 20px;
+        }
+
+        .projects-intro h2 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .projects-intro p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 4rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e1e5eb;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-image {
+            height: 250px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-type {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .project-location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .project-location i {
+            color: var(--primary);
+        }
+
+        .project-desc {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .project-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #f8fafc;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .detail-item i {
+            color: var(--primary);
+        }
+
+        .project-status {
+            display: inline-block;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .status-completed {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-ongoing {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, var(--secondary), var(--dark));
+            border-radius: 20px;
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+            color: white;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 4rem;
+            background: linear-gradient(135deg, rgba(255, 165, 0, 0.1), rgba(30, 58, 138, 0.1));
+            border-radius: 20px;
+            margin-bottom: 4rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta-button:hover {
+            background-color: #e69500;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 165, 0, 0.4);
+        }
+
+        /* Footer - Consistent with other pages */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 5rem 5% 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.8rem;
+            color: var(--primary);
+        }
+
+        .footer-column p, .footer-column a {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--primary);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .contact-item i {
+            color: var(--primary);
+            margin-top: 3px;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #999;
+            font-size: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .carousel-container {
+                height: 450px;
+            }
+            
+            .category-content h2 {
+                font-size: 2.2rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            }
+        }
+
+        @media (max-width: 992px) {
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .category-content {
+                padding: 2rem;
+            }
+            
+            .category-content h2 {
+                font-size: 2rem;
+            }
+            
+            .category-content p {
+                font-size: 1.1rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .carousel-container {
+                height: 400px;
+            }
+            
+            .carousel-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+            
+            .category-content h2 {
+                font-size: 1.8rem;
+            }
+            
+            .category-content p {
+                font-size: 1rem;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .projects-intro {
+                padding: 2rem;
+            }
+            
+            .projects-intro h2 {
+                font-size: 2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mobile-nav {
+                width: 200px;
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .carousel-container {
+                height: 350px;
+            }
+            
+            .category-content {
+                padding: 1.5rem;
+            }
+            
+            .category-content h2 {
+                font-size: 1.5rem;
+            }
+            
+            .page-header {
+                padding: 1rem;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .project-content {
+                padding: 1.5rem;
+            }
+            
+            .project-content h3 {
+                font-size: 1.3rem;
+            }
+            
+            .cta-section {
+                padding: 2rem 1.5rem;
+            }
+            
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header and Navigation -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fas fa-sun logo-icon"></i>
+                <div class="logo-text">Solar Prime Solutions</div>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="product.html">Products</a>
+                <a href="project.html">Projects</a>
+                <a href="blogs.html">Blogs</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+        <div class="mobile-nav" id="mobileNav">
+            <a href="index.html">Home</a>
+            <a href="product.html">Products</a>
+            <a href="project.html">Projects</a>
+            <a href="blogs.html">Blogs</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="close-area" id="closeArea"></div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <p>Showcasing successful solar installations across Kenya.</p>
+        <!-- Circular Carousel - Highlight Projects -->
+        <section class="carousel-section">
+            <div class="carousel-container">
+                <!-- Slide 1: Large Commercial Installation -->
+                <div class="carousel-slide active">
+                    <img src="https://images.unsplash.com/photo-1624397640148-949b1732bb0a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" alt="Commercial Solar Installation" class="category-image">
+                    <div class="category-content">
+                        <h2>Commercial Solar Projects</h2>
+                        <p>Large-scale solar installations for businesses, factories, and commercial complexes across Kenya.</p>
+                    </div>
+                </div>
+                
+                <!-- Slide 2: Residential Solar -->
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Residential Solar" class="category-image">
+                    <div class="category-content">
+                        <h2>Residential Solar Systems</h2>
+                        <p>Home solar solutions providing reliable electricity for families throughout Kenya.</p>
+                    </div>
+                </div>
+                
+                <!-- Slide 3: Agricultural Solar -->
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" alt="Agricultural Solar" class="category-image">
+                    <div class="category-content">
+                        <h2>Agricultural Solar Solutions</h2>
+                        <p>Solar-powered irrigation and farming systems boosting agricultural productivity.</p>
+                    </div>
+                </div>
+                
+                <!-- Slide 4: Institutional Projects -->
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" alt="Institutional Solar" class="category-image">
+                    <div class="category-content">
+                        <h2>Institutional Installations</h2>
+                        <p>Solar power for schools, hospitals, and government institutions.</p>
+                    </div>
+                </div>
+                
+                <!-- Slide 5: Off-Grid Solutions -->
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Off-Grid Solar" class="category-image">
+                    <div class="category-content">
+                        <h2>Off-Grid Solar Systems</h2>
+                        <p>Independent solar power solutions for remote areas without grid access.</p>
+                    </div>
+                </div>
+                
+                <div class="carousel-controls">
+                    <button class="carousel-btn" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="carousel-dots" id="carouselDots">
+                <!-- Dots will be generated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Projects Introduction -->
+        <section class="projects-intro">
+            <h2>Our Portfolio of Success</h2>
+            <p>Since 2019, Solar Prime Solutions has completed over 200 solar projects across Kenya. Each installation is tailored to the client's specific needs, ensuring maximum efficiency and return on investment.</p>
+        </section>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid" id="projectsGrid">
+            <!-- Project 1 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2076&q=80" alt="Nairobi Business Complex">
+                    <div class="project-type">Commercial</div>
+                </div>
+                <div class="project-content">
+                    <h3>Nairobi Business Complex</h3>
+                    <div class="project-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Westlands, Nairobi</span>
+                    </div>
+                    <p class="project-desc">A 250kW solar system installed for a 5-story office complex, reducing electricity costs by 80% and providing backup power during outages.</p>
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <i class="fas fa-solar-panel"></i>
+                            <span>250 kW System</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Completed: Jan 2023</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-bolt"></i>
+                            <span>Annual Savings: KSh 4.2M</span>
+                        </div>
+                    </div>
+                    <span class="project-status status-completed">Completed</span>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1513584684374-8bab748fbf90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2068&q=80" alt="Mombasa Beach Resort">
+                    <div class="project-type">Hospitality</div>
+                </div>
+                <div class="project-content">
+                    <h3>Mombasa Beach Resort</h3>
+                    <div class="project-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Nyali, Mombasa</span>
+                    </div>
+                    <p class="project-desc">A hybrid solar system with battery backup for a luxury beach resort, ensuring 24/7 power for guest rooms, pools, and restaurants.</p>
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <i class="fas fa-solar-panel"></i>
+                            <span>180 kW System</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Completed: Aug 2022</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-battery-full"></i>
+                            <span>48-hour Backup</span>
+                        </div>
+                    </div>
+                    <span class="project-status status-completed">Completed</span>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2068&q=80" alt="Nakuru Farm Irrigation">
+                    <div class="project-type">Agricultural</div>
+                </div>
+                <div class="project-content">
+                    <h3>Nakuru Farm Solar Irrigation</h3>
+                    <div class="project-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Naivasha, Nakuru</span>
+                    </div>
+                    <p class="project-desc">Solar-powered irrigation system for a 50-acre flower farm, eliminating diesel costs and providing reliable water supply.</p>
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <i class="fas fa-solar-panel"></i>
+                            <span>75 kW System</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Completed: Mar 2023</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-tint"></i>
+                            <span>20,000L/hr Pump</span>
+                        </div>
+                    </div>
+                    <span class="project-status status-completed">Completed</span>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Kisumu Hospital">
+                    <div class="project-type">Healthcare</div>
+                </div>
+                <div class="project-content">
+                    <h3>Kisumu County Hospital</h3>
+                    <div class="project-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Kisumu City</span>
+                    </div>
+                    <p class="project-desc">Emergency power backup system for critical hospital equipment, ensuring uninterrupted power for surgeries and life-saving equipment.</p>
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <i class="fas fa-solar-panel"></i>
+                            <span>300 kW System</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Completed: Nov 2022</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-heartbeat"></i>
+                            <span>100% Uptime</span>
+                        </div>
+                    </div>
+                    <span class="project-status status-completed">Completed</span>
+                </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1577493340884-5c35b5b7c8ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Eldoret School">
+                    <div class="project-type">Education</div>
+                </div>
+                <div class="project-content">
+                    <h3>Eldoret Boarding School</h3>
+                    <div class="project-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Eldoret, Uasin Gishu</span>
+                    </div>
+                    <p class="project-desc">Complete solar solution for a boarding school, providing electricity for classrooms, dormitories, and computer labs.</p>
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <i class="fas fa-solar-panel"></i>
+                            <span>120 kW System</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Completed: Jun 2023</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>1,200 Students</span>
+                        </div>
+                    </div>
+                    <span class="project-status status-completed">Completed</span>
+                </div>
+            </div>
+
+            <!-- Project 6 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1549924231-f129b911e442?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Nyeri Tea Factory">
+                    <div class="project-type">Industrial</div>
+                </div>
+                <div class="project-content">
+                    <h3>Nyeri Tea Processing Factory</h3>
+                    <div class="project-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Nyeri County</span>
+                    </div>
+                    <p class="project-desc">Solar power for tea processing machinery, reducing production costs and increasing profit margins for local farmers.</p>
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <i class="fas fa-solar-panel"></i>
+                            <span>400 kW System</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Completed: Feb 2023</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-industry"></i>
+                            <span>24/7 Operation</span>
+                        </div>
+                    </div>
+                    <span class="project-status status-completed">Completed</span>
+                </div>
+            </div>
+
+            <!-- Project 7 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Kitengela Housing">
+                    <div class="project-type">Residential</div>
+                </div>
+                <div class="project-content">
+                    <h3>Kitengela Housing Estate</h3>
+                    <div class="project-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Kitengela, Kajiado</span>
+                    </div>
+                    <p class="project-desc">Solar installations for 50 residential homes in a gated community, providing reliable power and reducing electricity bills.</p>
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <i class="fas fa-solar-panel"></i>
+                            <span>5 kW Each</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Completed: Sep 2022</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-home"></i>
+                            <span>50 Homes</span>
+                        </div>
+                    </div>
+                    <span class="project-status status-completed">Completed</span>
+                </div>
+            </div>
+
+            <!-- Project 8 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1624397640148-949b1732bb0a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Turkana Off-Grid">
+                    <div class="project-type">Community</div>
+                </div>
+                <div class="project-content">
+                    <h3>Turkana Off-Grid Community</h3>
+                    <div class="project-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Lodwar, Turkana</span>
+                    </div>
+                    <p class="project-desc">Solar micro-grid providing electricity for a remote village, powering homes, a clinic, and small businesses.</p>
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <i class="fas fa-solar-panel"></i>
+                            <span>Community Grid</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Completed: Dec 2022</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-users"></i>
+                            <span>500+ People</span>
+                        </div>
+                    </div>
+                    <span class="project-status status-completed">Completed</span>
+                </div>
+            </div>
+
+            <!-- Project 9 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Thika Water Pumping">
+                    <div class="project-type">Water Supply</div>
+                </div>
+                <div class="project-content">
+                    <h3>Thika Water Pumping Station</h3>
+                    <div class="project-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Thika, Kiambu</span>
+                    </div>
+                    <p class="project-desc">Solar-powered water pumping system supplying clean water to a community of 2,000 people.</p>
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <i class="fas fa-solar-panel"></i>
+                            <span>60 kW System</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Ongoing</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-tint"></i>
+                            <span>50,000L Daily</span>
+                        </div>
+                    </div>
+                    <span class="project-status status-ongoing">Ongoing</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <h2 style="font-size: 2.5rem; margin-bottom: 3rem; color: white;">Our Impact in Numbers</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15MW+</div>
+                    <div class="stat-label">Total Installed Capacity</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">47</div>
+                    <div class="stat-label">Counties Covered</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Client Satisfaction</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Solar Prime Solutions</h3>
+                <p>Kenya's premier solar provider, delivering high-quality solar solutions since 2019. We're committed to helping you save on electricity costs while promoting sustainable energy.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="product.html">Products</a>
+                <a href="project.html">Projects</a>
+                <a href="blogs.html">Blogs</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-column">
+                <h3>Our Services</h3>
+                <a href="#products">Solar Products</a>
+                <a href="#installation">Professional Installation</a>
+                <a href="#consultation">Expert Consultation</a>
+                <a href="#maintenance">System Maintenance</a>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>0746 204 887</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>mugnuselectric42@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Plessey House, Uhuru Highway<br>P.O. Box 100250-00200<br>Nairobi, Kenya</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Solar Prime Solutions. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobileNav');
+        const closeArea = document.getElementById('closeArea');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            closeArea.classList.toggle('active');
+        });
+
+        closeArea.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('active');
+            closeArea.classList.remove('active');
+        });
+
+        // Close mobile nav when clicking on links
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+                closeArea.classList.remove('active');
+            });
+        });
+
+        // Circular Carousel Implementation - Same as Products Page
+        const slides = document.querySelectorAll('.carousel-slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const carouselDots = document.getElementById('carouselDots');
+        
+        let currentSlideIndex = 0;
+        const totalSlides = slides.length;
+        let autoSlideInterval;
+        
+        // Create dots
+        slides.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.classList.add('carousel-dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                goToSlide(index);
+            });
+            carouselDots.appendChild(dot);
+        });
+        
+        const dots = document.querySelectorAll('.carousel-dot');
+        
+        // Show specific slide
+        function showSlide(index) {
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            slides[index].classList.add('active');
+            
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+            
+            currentSlideIndex = index;
+        }
+        
+        // Go to specific slide
+        function goToSlide(index) {
+            showSlide(index);
+            resetAutoSlide();
+        }
+        
+        // Next slide function
+        function nextSlide() {
+            const nextIndex = (currentSlideIndex + 1) % totalSlides;
+            showSlide(nextIndex);
+        }
+        
+        // Previous slide function
+        function prevSlide() {
+            const prevIndex = currentSlideIndex === 0 ? totalSlides - 1 : currentSlideIndex - 1;
+            showSlide(prevIndex);
+        }
+        
+        // Start auto-slide
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, 4000);
+        }
+        
+        // Reset auto-slide timer
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
+        
+        // Event listeners for buttons
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetAutoSlide();
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetAutoSlide();
+        });
+        
+        // Contact button for projects
+        document.getElementById('projectContactBtn').addEventListener('click', () => {
+            showProjectInquiryForm();
+        });
+        
+        // Show project inquiry form
+        function showProjectInquiryForm() {
+            const modalHTML = `
+                <div id="projectInquiryModal" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;z-index:2000;padding:20px;">
+                    <div style="background:white;border-radius:15px;width:100%;max-width:600px;max-height:90vh;overflow-y:auto;position:relative;">
+                        <div style="padding:25px 30px;background:linear-gradient(90deg,var(--secondary),var(--dark));color:white;border-radius:15px 15px 0 0;display:flex;justify-content:space-between;align-items:center;">
+                            <h2 style="margin:0;font-size:1.5rem;">Project Consultation Request</h2>
+                            <button id="closeProjectModal" style="background:none;border:none;color:white;font-size:1.8rem;cursor:pointer;padding:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center;">×</button>
+                        </div>
+                        <div style="padding:30px;">
+                            <div style="background:#f0f7ff;padding:20px;border-radius:10px;margin-bottom:25px;border-left:4px solid var(--primary);">
+                                <h4 style="margin-bottom:10px;color:var(--secondary);">
+                                    <i class="fas fa-solar-panel"></i> Free Solar Project Assessment
+                                </h4>
+                                <p style="color:#555;margin:0;">
+                                    Fill out this form and our project manager will contact you within 24 hours to schedule a site visit and provide a detailed proposal.
+                                </p>
+                            </div>
+                            
+                            <form id="projectInquiryForm">
+                                <div style="margin-bottom:20px;">
+                                    <label style="display:block;margin-bottom:8px;font-weight:600;color:#333;">Full Name *</label>
+                                    <input type="text" id="projectClientName" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:8px;font-size:1rem;" required placeholder="Enter your full name">
+                                </div>
+                                
+                                <div style="margin-bottom:20px;">
+                                    <label style="display:block;margin-bottom:8px;font-weight:600;color:#333;">Email Address *</label>
+                                    <input type="email" id="projectClientEmail" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:8px;font-size:1rem;" required placeholder="Enter your email address">
+                                </div>
+                                
+                                <div style="margin-bottom:20px;">
+                                    <label style="display:block;margin-bottom:8px;font-weight:600;color:#333;">Phone Number *</label>
+                                    <input type="tel" id="projectClientPhone" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:8px;font-size:1rem;" required placeholder="Enter your phone number">
+                                </div>
+                                
+                                <div style="margin-bottom:20px;">
+                                    <label style="display:block;margin-bottom:8px;font-weight:600;color:#333;">Project Type *</label>
+                                    <select id="projectType" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:8px;font-size:1rem;" required>
+                                        <option value="">Select Project Type</option>
+                                        <option value="residential">Residential</option>
+                                        <option value="commercial">Commercial</option>
+                                        <option value="industrial">Industrial</option>
+                                        <option value="agricultural">Agricultural</option>
+                                        <option value="institutional">School/Hospital</option>
+                                        <option value="community">Community Project</option>
+                                    </select>
+                                </div>
+                                
+                                <div style="margin-bottom:20px;">
+                                    <label style="display:block;margin-bottom:8px;font-weight:600;color:#333;">Project Location *</label>
+                                    <input type="text" id="projectLocation" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:8px;font-size:1rem;" required placeholder="City/Region, County">
+                                </div>
+                                
+                                <div style="margin-bottom:25px;">
+                                    <label style="display:block;margin-bottom:8px;font-weight:600;color:#333;">Project Details *</label>
+                                    <textarea id="projectDetails" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:8px;font-size:1rem;min-height:150px;resize:vertical;" required placeholder="Tell us about your project:
+- Estimated size/scale
+- Main purpose/power needs
+- Current electricity situation
+- Any specific requirements
+- Budget range (if known)"></textarea>
+                                </div>
+                                
+                                <button type="submit" style="background:var(--primary);color:white;border:none;padding:15px;width:100%;border-radius:8px;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all 0.3s;">
+                                    <i class="fas fa-paper-plane"></i> Request Free Consultation
+                                </button>
+                            </form>
+                            
+                            <div style="margin-top:25px;padding-top:20px;border-top:1px solid #eee;text-align:center;">
+                                <p style="color:#666;font-size:0.9rem;">
+                                    <i class="fas fa-check-circle"></i> Free site assessment included<br>
+                                    <i class="fas fa-file-alt"></i> Detailed proposal within 48 hours
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Remove any existing modal first
+            const existingModal = document.getElementById('projectInquiryModal');
+            if (existingModal) {
+                existingModal.remove();
+            }
+            
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+            
+            // Setup project inquiry modal events
+            const modal = document.getElementById('projectInquiryModal');
+            const closeBtn = document.getElementById('closeProjectModal');
+            const form = document.getElementById('projectInquiryForm');
+            
+            if (!modal || !closeBtn || !form) return;
+            
+            closeBtn.addEventListener('click', function() {
+                modal.remove();
+            });
+            
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal) {
+                    modal.remove();
+                }
+            });
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const clientName = document.getElementById('projectClientName').value.trim();
+                const clientEmail = document.getElementById('projectClientEmail').value.trim();
+                const clientPhone = document.getElementById('projectClientPhone').value.trim();
+                const projectType = document.getElementById('projectType').value;
+                const projectLocation = document.getElementById('projectLocation').value.trim();
+                const projectDetails = document.getElementById('projectDetails').value.trim();
+                
+                if (!clientName || !clientEmail || !clientPhone || !projectType || !projectLocation || !projectDetails) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+                
+                if (!validateEmail(clientEmail)) {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+                
+                // Save project inquiry
+                saveProjectInquiry({
+                    clientName: clientName,
+                    clientEmail: clientEmail,
+                    clientPhone: clientPhone,
+                    projectType: projectType,
+                    projectLocation: projectLocation,
+                    projectDetails: projectDetails,
+                    date: new Date().toISOString()
+                });
+                
+                alert('Thank you for your project inquiry! Our project manager will contact you within 24 hours to schedule a consultation.');
+                modal.remove();
+            });
+        }
+        
+        // Email validation
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        // Save project inquiry to localStorage
+        function saveProjectInquiry(inquiry) {
+            try {
+                const existingJSON = localStorage.getItem('solarProjectInquiries');
+                const existingInquiries = existingJSON ? JSON.parse(existingJSON) : [];
+                
+                existingInquiries.unshift(inquiry);
+                localStorage.setItem('solarProjectInquiries', JSON.stringify(existingInquiries));
+                
+                console.log('Project inquiry saved successfully:', inquiry);
+            } catch (error) {
+                console.error('Error saving project inquiry:', error);
+            }
+        }
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Initialize
+        showSlide(0);
+        startAutoSlide();
+    </script>
+</body>
+</html>

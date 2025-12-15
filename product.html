@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Solar Prime Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #FFA500;
+            --secondary: #1E3A8A;
+            --dark: #0F172A;
+            --light: #F8FAFC;
+            --accent: #3B82F6;
+        }
+
+        body {
+            overflow-x: hidden;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            color: var(--primary);
+            font-size: 2.5rem;
+            filter: drop-shadow(0 0 5px rgba(255, 165, 0, 0.3));
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--dark);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 30px;
+            height: 24px;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--dark);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            position: absolute;
+        }
+
+        .hamburger span:nth-child(1) {
+            top: 0;
+        }
+
+        .hamburger span:nth-child(2) {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .hamburger span:nth-child(3) {
+            bottom: 0;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 50%;
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg);
+            bottom: 40%;
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            width: 250px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            padding: 1rem 0;
+            transform: translateX(150%);
+            transition: transform 0.4s ease;
+            z-index: 999;
+        }
+
+        .mobile-nav.active {
+            transform: translateX(0);
+        }
+
+        .mobile-nav a {
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border-bottom: 1px solid #f1f5f9;
+            text-transform: uppercase;
+        }
+
+        .mobile-nav a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-nav a:hover {
+            background-color: #f8fafc;
+            color: var(--primary);
+            padding-left: 2rem;
+        }
+
+        .close-area {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 998;
+            display: none;
+        }
+
+        .close-area.active {
+            display: block;
+        }
+
+        .main-content {
+            padding-top: 120px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+
+        .carousel-section {
+            margin-bottom: 4rem;
+            position: relative;
+            padding: 1rem 0;
+        }
+
+        .carousel-container {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            margin: 0 auto;
+            max-width: 1200px;
+            border-radius: 20px;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            pointer-events: none;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .category-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.8);
+        }
+
+        .category-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2.5rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            color: white;
+        }
+
+        .category-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .category-content p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 800px;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+            z-index: 10;
+        }
+
+        .carousel-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.3rem;
+            color: var(--dark);
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ddd;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-dot.active {
+            background-color: var(--primary);
+            transform: scale(1.2);
+        }
+
+        .search-section {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .search-section h2 {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .search-container {
+            display: flex;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 50px;
+            overflow: hidden;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 1.2rem 2rem;
+            border: none;
+            font-size: 1.1rem;
+            outline: none;
+        }
+
+        .search-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .search-btn:hover {
+            background-color: #e69500;
+        }
+
+        .categories-tabs {
+            background-color: #f5f5f5;
+            border-radius: 0;
+            margin-bottom: 3rem;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .categories-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-tab {
+            display: inline-block;
+            padding: 1.2rem 2rem;
+            background-color: #f5f5f5;
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .category-tab:hover {
+            background-color: #e8e8e8;
+        }
+
+        .category-tab.active {
+            background-color: white;
+            color: var(--primary);
+            font-weight: 600;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .category-section {
+            margin-bottom: 4rem;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .category-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .category-section h3 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #e1e5eb;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            height: 220px;
+            width: 100%;
+            overflow: hidden;
+            background: linear-gradient(45deg, #f5f7fa, #c3cfe2);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .product-content {
+            padding: 1.5rem;
+        }
+
+        .product-content h4 {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .product-id {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            font-family: monospace;
+        }
+
+        .product-desc {
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            height: 70px;
+            overflow: hidden;
+        }
+
+        .product-price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .view-btn {
+            flex: 1;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .view-btn:hover {
+            background: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        .no-products {
+            text-align: center;
+            padding: 4rem 2rem;
+            grid-column: 1 / -1;
+            color: #666;
+        }
+
+        .no-products i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ccc;
+        }
+
+        .cta-products {
+            text-align: center;
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--secondary), var(--dark));
+            border-radius: 20px;
+            margin-bottom: 4rem;
+            color: white;
+        }
+
+        .cta-products h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .cta-products p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta-button:hover {
+            background-color: #e69500;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 165, 0, 0.4);
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 5rem 5% 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.8rem;
+            color: var(--primary);
+        }
+
+        .footer-column p, .footer-column a {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--primary);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .contact-item i {
+            color: var(--primary);
+            margin-top: 3px;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #999;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 1200px) {
+            .carousel-container {
+                height: 450px;
+            }
+            
+            .category-content h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .category-content {
+                padding: 2rem;
+            }
+            
+            .category-content h2 {
+                font-size: 2rem;
+            }
+            
+            .category-content p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .carousel-container {
+                height: 400px;
+            }
+            
+            .carousel-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+            
+            .category-content h2 {
+                font-size: 1.8rem;
+            }
+            
+            .category-content p {
+                font-size: 1rem;
+            }
+            
+            .search-container {
+                flex-direction: column;
+                border-radius: 15px;
+            }
+            
+            .search-input {
+                padding: 1rem;
+            }
+            
+            .search-btn {
+                padding: 1rem;
+                border-radius: 0 0 15px 15px;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            
+            .category-tab {
+                padding: 1rem 1.5rem;
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .carousel-container {
+                height: 350px;
+            }
+            
+            .category-content {
+                padding: 1.5rem;
+            }
+            
+            .category-content h2 {
+                font-size: 1.5rem;
+            }
+            
+            .search-section {
+                padding: 2rem 1.5rem;
+            }
+            
+            .search-section h2 {
+                font-size: 1.8rem;
+            }
+            
+            .cta-products h2 {
+                font-size: 1.8rem;
+            }
+            
+            .mobile-nav {
+                width: 200px;
+                right: 10px;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-section h3 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header and Navigation -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fas fa-sun logo-icon"></i>
+                <div class="logo-text">Solar Prime Solutions</div>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="product.html">Products</a>
+                <a href="project.html">Projects</a>
+                <a href="blogs.html">Blogs</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+        <div class="mobile-nav" id="mobileNav">
+            <a href="index.html">Home</a>
+            <a href="product.html">Products</a>
+            <a href="project.html">Projects</a>
+            <a href="blogs.html">Blogs</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="close-area" id="closeArea"></div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Circular Carousel -->
+        <section class="carousel-section">
+            <div class="carousel-container">
+                <!-- Slide 1: Solar Full Kit -->
+                <div class="carousel-slide active">
+                    <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Solar Full Kit" class="category-image">
+                    <div class="category-content">
+                        <h2>Solar Full Kits</h2>
+                        <p>Complete solar systems including panels, inverters, batteries, and mounting hardware.</p>
+                    </div>
+                </div>
+                
+                <!-- Slide 2: Solar Panels -->
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2058&q=80" alt="Solar Panels" class="category-image">
+                    <div class="category-content">
+                        <h2>Solar Panels</h2>
+                        <p>High-efficiency monocrystalline and polycrystalline solar panels from top brands.</p>
+                    </div>
+                </div>
+                
+                <!-- Slide 3: Batteries -->
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2058&q=80" alt="Batteries" class="category-image">
+                    <div class="category-content">
+                        <h2>Solar Batteries</h2>
+                        <p>Reliable deep-cycle batteries for energy storage. Available in various capacities.</p>
+                    </div>
+                </div>
+                
+                <!-- Slide 4: Inverters -->
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Inverters" class="category-image">
+                    <div class="category-content">
+                        <h2>Solar Inverters</h2>
+                        <p>Convert DC solar power to AC for home use with advanced MPPT tracking.</p>
+                    </div>
+                </div>
+                
+                <!-- Slide 5: Solar Lighting -->
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1562976540-1502c2145186?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Solar Lighting" class="category-image">
+                    <div class="category-content">
+                        <h2>Solar Lighting</h2>
+                        <p>Energy-efficient solar lighting solutions for indoor and outdoor use.</p>
+                    </div>
+                </div>
+                
+                <!-- Slide 6: Water Heaters -->
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Water Heaters" class="category-image">
+                    <div class="category-content">
+                        <h2>Solar Water Heaters</h2>
+                        <p>Efficient solar water heating systems that use free solar energy.</p>
+                    </div>
+                </div>
+                
+                <!-- Slide 7: Water Pumps -->
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1625822875604-2f8d5b8b3c98?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Water Pumps" class="category-image">
+                    <div class="category-content">
+                        <h2>Solar Water Pumps</h2>
+                        <p>Reliable solar-powered water pumps for irrigation and domestic use.</p>
+                    </div>
+                </div>
+                
+                <!-- Slide 8: Accessories -->
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1597237154673-fff31741c9f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Accessories" class="category-image">
+                    <div class="category-content">
+                        <h2>Solar Accessories</h2>
+                        <p>All necessary components including mounting structures and cables.</p>
+                    </div>
+                </div>
+                
+                <div class="carousel-controls">
+                    <button class="carousel-btn" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="carousel-dots" id="carouselDots">
+                <!-- Dots will be generated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <h2>Search All Solar Products</h2>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search for solar products by name, ID, or category..." id="searchInput">
+                <button class="search-btn" id="searchBtn">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+        </section>
+
+        <!-- Categories Tabs -->
+        <div class="categories-tabs">
+            <button class="category-tab active" data-category="solar-full-kits">Solar Full Kits</button>
+            <button class="category-tab" data-category="solar-panels">Solar Panels</button>
+            <button class="category-tab" data-category="batteries">Batteries</button>
+            <button class="category-tab" data-category="inverters">Inverters</button>
+            <button class="category-tab" data-category="solar-lighting">Solar Lighting</button>
+            <button class="category-tab" data-category="water-heaters">Water Heaters</button>
+            <button class="category-tab" data-category="water-pumps">Water Pumps</button>
+            <button class="category-tab" data-category="accessories">Accessories</button>
+        </div>
+
+        <!-- Products by Category -->
+        <div id="productsContainer">
+            <!-- Products will be loaded here dynamically from localStorage -->
+        </div>
+
+        <!-- Call to Action -->
+        <section class="cta-products">
+            <h2>Need Custom Solar Solutions?</h2>
+            <p>Contact our experts for personalized advice and customized solar solutions tailored to your specific needs and budget.</p>
+            <button class="cta-button" id="contactBtn">
+                <i class="fas fa-phone-alt"></i> Contact Our Experts
+            </button>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Solar Prime Solutions</h3>
+                <p>Kenya's premier solar provider, delivering high-quality solar solutions since 2019. We're committed to helping you save on electricity costs while promoting sustainable energy.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="product.html">Products</a>
+                <a href="project.html">Projects</a>
+                <a href="blogs.html">Blogs</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-column">
+                <h3>Our Services</h3>
+                <a href="#products">Solar Products</a>
+                <a href="#installation">Professional Installation</a>
+                <a href="#consultation">Expert Consultation</a>
+                <a href="#maintenance">System Maintenance</a>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>0746 204 887</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>mugnuselectric42@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Plessey House, Uhuru Highway<br>P.O. Box 100250-00200<br>Nairobi, Kenya</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Solar Prime Solutions. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+   <script>
+    // Mobile Navigation
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    const closeArea = document.getElementById('closeArea');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobileNav.classList.toggle('active');
+        closeArea.classList.toggle('active');
+    });
+
+    closeArea.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+        closeArea.classList.remove('active');
+    });
+
+    // Close mobile nav when clicking on links
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('active');
+            closeArea.classList.remove('active');
+        });
+    });
+
+    // Circular Carousel Implementation
+    const slides = document.querySelectorAll('.carousel-slide');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const carouselDots = document.getElementById('carouselDots');
+    
+    let currentSlideIndex = 0;
+    const totalSlides = slides.length;
+    let autoSlideInterval;
+    
+    // Create dots
+    slides.forEach((_, index) => {
+        const dot = document.createElement('button');
+        dot.classList.add('carousel-dot');
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => {
+            goToSlide(index);
+        });
+        carouselDots.appendChild(dot);
+    });
+    
+    const dots = document.querySelectorAll('.carousel-dot');
+    
+    // Show specific slide
+    function showSlide(index) {
+        slides.forEach(slide => {
+            slide.classList.remove('active');
+        });
+        
+        slides[index].classList.add('active');
+        
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+        
+        currentSlideIndex = index;
+    }
+    
+    // Go to specific slide
+    function goToSlide(index) {
+        showSlide(index);
+        resetAutoSlide();
+    }
+    
+    // Next slide function
+    function nextSlide() {
+        const nextIndex = (currentSlideIndex + 1) % totalSlides;
+        showSlide(nextIndex);
+    }
+    
+    // Previous slide function
+    function prevSlide() {
+        const prevIndex = currentSlideIndex === 0 ? totalSlides - 1 : currentSlideIndex - 1;
+        showSlide(prevIndex);
+    }
+    
+    // Start auto-slide
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(nextSlide, 4000);
+    }
+    
+    // Reset auto-slide timer
+    function resetAutoSlide() {
+        clearInterval(autoSlideInterval);
+        startAutoSlide();
+    }
+    
+    // Event listeners for buttons
+    prevBtn.addEventListener('click', () => {
+        prevSlide();
+        resetAutoSlide();
+    });
+    
+    nextBtn.addEventListener('click', () => {
+        nextSlide();
+        resetAutoSlide();
+    });
+    
+    // Category tabs switching
+    const categoryTabs = document.querySelectorAll('.category-tab');
+    
+    categoryTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            categoryTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            
+            const category = tab.getAttribute('data-category');
+            loadProductsByCategory(category);
+        });
+    });
+    
+    // Load products from localStorage and display by category
+    function loadProductsByCategory(category) {
+        const productsContainer = document.getElementById('productsContainer');
+        const products = getProductsFromStorage();
+        
+        const filteredProducts = products.filter(product => product.category === category);
+        
+        productsContainer.innerHTML = '';
+        
+        if (filteredProducts.length === 0) {
+            productsContainer.innerHTML = `
+                <div class="category-section active">
+                    <h3>${getCategoryName(category)}</h3>
+                    <div class="no-products">
+                        <i class="fas fa-sun"></i>
+                        <h4>No Products Available</h4>
+                        <p>No products have been added to this category yet.</p>
+                    </div>
+                </div>
+            `;
+            return;
+        }
+        
+        const categorySection = document.createElement('div');
+        categorySection.className = 'category-section active';
+        categorySection.innerHTML = `<h3>${getCategoryName(category)}</h3>`;
+        
+        const productsGrid = document.createElement('div');
+        productsGrid.className = 'products-grid';
+        
+        filteredProducts.forEach(product => {
+            const productCard = createProductCard(product);
+            productsGrid.appendChild(productCard);
+        });
+        
+        categorySection.appendChild(productsGrid);
+        productsContainer.appendChild(categorySection);
+    }
+    
+    // Get category display name
+    function getCategoryName(category) {
+        const names = {
+            'solar-full-kits': 'Solar Full Kits',
+            'solar-panels': 'Solar Panels',
+            'batteries': 'Batteries',
+            'inverters': 'Inverters',
+            'solar-lighting': 'Solar Lighting',
+            'water-heaters': 'Water Heaters',
+            'water-pumps': 'Water Pumps',
+            'accessories': 'Accessories'
+        };
+        return names[category] || category;
+    }
+    
+    // Create product card HTML
+    function createProductCard(product) {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        
+        const formattedPrice = new Intl.NumberFormat('en-KE', {
+            style: 'currency',
+            currency: 'KES',
+            minimumFractionDigits: 0
+        }).format(product.price);
+        
+        card.innerHTML = `
+            <div class="product-badge">${getCategoryName(product.category)}</div>
+            <div class="product-image">
+                ${product.imageData ? 
+                    `<img src="${product.imageData}" alt="${product.name}" loading="lazy">` : 
+                    `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#666;"><i class="fas fa-solar-panel fa-3x"></i></div>`
+                }
+            </div>
+            <div class="product-content">
+                <h4>${product.name || 'Unnamed Product'}</h4>
+                <div class="product-id">ID: ${product.id || 'N/A'}</div>
+                <p class="product-desc">${product.shortDesc || 'No description available'}</p>
+                <div class="product-price">${formattedPrice}</div>
+                <div class="product-actions">
+                    <button class="view-btn" data-id="${product.id}">
+                        <i class="fas fa-eye"></i> View Details
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        const viewBtn = card.querySelector('.view-btn');
+        viewBtn.addEventListener('click', () => {
+            viewProductDetails(product.id);
+        });
+        
+        return card;
+    }
+    
+    // View product details WITH INTEGRATED CONTACT FORM
+    function viewProductDetails(productId) {
+        const products = getProductsFromStorage();
+        const product = products.find(p => p.id === productId);
+        
+        if (!product) {
+            alert('Product not found!');
+            return;
+        }
+        
+        const formattedPrice = new Intl.NumberFormat('en-KE', {
+            style: 'currency',
+            currency: 'KES',
+            minimumFractionDigits: 0
+        }).format(product.price);
+        
+        // Create modal for product details WITH CONTACT FORM INSIDE
+        const modalHTML = `
+            <div id="productModal" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;z-index:2000;padding:20px;">
+                <div style="background:white;border-radius:15px;width:100%;max-width:1000px;max-height:90vh;overflow-y:auto;position:relative;">
+                    <div style="padding:25px 30px;background:linear-gradient(90deg,var(--secondary),var(--dark));color:white;border-radius:15px 15px 0 0;display:flex;justify-content:space-between;align-items:center;">
+                        <h2 style="margin:0;font-size:1.6rem;">${product.name}</h2>
+                        <button id="closeProductModal" style="background:none;border:none;color:white;font-size:1.8rem;cursor:pointer;padding:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center;">×</button>
+                    </div>
+                    <div style="padding:30px;display:grid;grid-template-columns:1fr 1fr;gap:30px;">
+                        <div>
+                            <div style="width:100%;height:350px;border-radius:10px;overflow:hidden;background:#f5f5f5;">
+                                ${product.imageData ? 
+                                    `<img src="${product.imageData}" alt="${product.name}" style="width:100%;height:100%;object-fit:cover;">` : 
+                                    `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#666;"><i class="fas fa-solar-panel fa-4x"></i></div>`
+                                }
+                            </div>
+                            
+                            <div style="margin-top:25px;">
+                                <h3 style="margin-bottom:15px;color:var(--secondary);">Product Details</h3>
+                                <div style="background:#f8f9fa;padding:20px;border-radius:10px;">
+                                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;">
+                                        <div>
+                                            <div style="font-size:0.9rem;color:#666;">Product ID</div>
+                                            <div style="font-weight:600;font-size:1.1rem;">${product.id}</div>
+                                        </div>
+                                        <div style="background:${getCategoryColor(product.category)};color:white;padding:8px 15px;border-radius:20px;font-size:0.9rem;font-weight:600;">
+                                            ${getCategoryName(product.category)}
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="font-size:2.5rem;font-weight:800;color:var(--primary);margin:20px 0;">
+                                        ${formattedPrice}
+                                    </div>
+                                    
+                                    <h4 style="margin-bottom:10px;color:#333;">Description</h4>
+                                    <p style="line-height:1.6;color:#555;">
+                                        ${product.fullDesc || product.shortDesc || 'No description available'}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- CONTACT FORM SECTION - RIGHT SIDE -->
+                        <div>
+                            <div style="background:#e8f4ff;padding:25px;border-radius:10px;border:2px solid #c3d9ff;">
+                                <h3 style="margin-bottom:20px;color:var(--secondary);">
+                                    <i class="fas fa-envelope"></i> Contact Us for This Product
+                                </h3>
+                                <p style="margin-bottom:25px;color:#555;">
+                                    Interested in <strong>${product.name}</strong>? Fill out the form below and our solar experts will contact you within 24 hours with more details.
+                                </p>
+                                
+                                <form id="contactForm">
+                                    <div style="margin-bottom:20px;">
+                                        <label style="display:block;margin-bottom:8px;font-weight:600;color:#333;">Full Name *</label>
+                                        <input type="text" id="clientName" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:8px;font-size:1rem;" required placeholder="Enter your full name">
+                                    </div>
+                                    
+                                    <div style="margin-bottom:20px;">
+                                        <label style="display:block;margin-bottom:8px;font-weight:600;color:#333;">Email Address *</label>
+                                        <input type="email" id="clientEmail" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:8px;font-size:1rem;" required placeholder="Enter your email address">
+                                    </div>
+                                    
+                                    <div style="margin-bottom:20px;">
+                                        <label style="display:block;margin-bottom:8px;font-weight:600;color:#333;">Phone Number *</label>
+                                        <input type="tel" id="clientPhone" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:8px;font-size:1rem;" required placeholder="Enter your phone number">
+                                    </div>
+                                    
+                                    <div style="margin-bottom:25px;">
+                                        <label style="display:block;margin-bottom:8px;font-weight:600;color:#333;">Your Message *</label>
+                                        <textarea id="clientMessage" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:8px;font-size:1rem;min-height:120px;resize:vertical;" required placeholder="Tell us more about your inquiry...">I'm interested in ${product.name}. Please provide more details about availability and specifications.</textarea>
+                                    </div>
+                                    
+                                    <button type="submit" style="background:var(--primary);color:white;border:none;padding:15px;width:100%;border-radius:8px;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all 0.3s;">
+                                        <i class="fas fa-paper-plane"></i> Send Inquiry
+                                    </button>
+                                </form>
+                                
+                                <div style="margin-top:20px;padding:15px;background:#f8f9fa;border-radius:8px;border-left:4px solid var(--primary);">
+                                    <div style="display:flex;align-items:center;gap:10px;color:#666;">
+                                        <i class="fas fa-info-circle"></i>
+                                        <div>
+                                            <strong>Quick Response Guaranteed</strong>
+                                            <p style="margin:5px 0 0 0;font-size:0.9rem;">Our team will contact you within 24 hours</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-top:25px;background:#f9f9f9;padding:20px;border-radius:10px;">
+                                <h4 style="margin-bottom:15px;color:#333;">
+                                    <i class="fas fa-headset"></i> Need Immediate Assistance?
+                                </h4>
+                                <div style="display:flex;gap:15px;align-items:center;">
+                                    <div style="flex:1;background:white;padding:15px;border-radius:8px;text-align:center;">
+                                        <div style="color:var(--primary);font-weight:600;margin-bottom:5px;">
+                                            <i class="fas fa-phone"></i> Call Us
+                                        </div>
+                                        <div style="font-size:0.9rem;">0746 204 887</div>
+                                    </div>
+                                    <div style="flex:1;background:white;padding:15px;border-radius:8px;text-align:center;">
+                                        <div style="color:var(--primary);font-weight:600;margin-bottom:5px;">
+                                            <i class="fas fa-envelope"></i> Email Us
+                                        </div>
+                                        <div style="font-size:0.9rem;">mugnuselectric42@gmail.com</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Remove any existing modal first
+        const existingModal = document.getElementById('productModal');
+        if (existingModal) {
+            existingModal.remove();
+        }
+        
+        // Add new modal
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+        
+        // Setup modal events
+        setupProductModalEvents(product);
+    }
+    
+    // Setup product modal events
+    function setupProductModalEvents(product) {
+        const modal = document.getElementById('productModal');
+        const closeBtn = document.getElementById('closeProductModal');
+        const form = document.getElementById('contactForm');
+        
+        if (!modal || !closeBtn || !form) return;
+        
+        // Close button click
+        closeBtn.addEventListener('click', function() {
+            modal.remove();
+        });
+        
+        // Close when clicking outside the modal
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.remove();
+            }
+        });
+        
+        // Escape key to close
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal) {
+                modal.remove();
+            }
+        });
+        
+        // Form submission
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const clientName = document.getElementById('clientName').value.trim();
+            const clientEmail = document.getElementById('clientEmail').value.trim();
+            const clientPhone = document.getElementById('clientPhone').value.trim();
+            const clientMessage = document.getElementById('clientMessage').value.trim();
+            
+            // Basic validation
+            if (!clientName || !clientEmail || !clientPhone || !clientMessage) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            if (!validateEmail(clientEmail)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            // Save inquiry to localStorage
+            saveClientInquiry({
+                productId: product.id,
+                productName: product.name,
+                productCategory: product.category,
+                clientName: clientName,
+                clientEmail: clientEmail,
+                clientPhone: clientPhone,
+                clientMessage: clientMessage,
+                date: new Date().toISOString()
+            });
+            
+            // Show success message
+            alert(`Thank you for your inquiry about ${product.name}! We will contact you within 24 hours.`);
+            
+            // Close the modal
+            modal.remove();
+        });
+    }
+    
+    // Get category color
+    function getCategoryColor(category) {
+        const colors = {
+            'solar-full-kits': '#FF9800',
+            'solar-panels': '#4CAF50',
+            'batteries': '#2196F3',
+            'inverters': '#9C27B0',
+            'solar-lighting': '#FF5722',
+            'water-heaters': '#00BCD4',
+            'water-pumps': '#795548',
+            'accessories': '#607D8B'
+        };
+        return colors[category] || '#666';
+    }
+    
+    // Get products from localStorage
+    function getProductsFromStorage() {
+        try {
+            const productsJSON = localStorage.getItem('solarStoreProducts');
+            return productsJSON ? JSON.parse(productsJSON) : [];
+        } catch (error) {
+            console.error('Error loading products:', error);
+            return [];
+        }
+    }
+    
+    // Search functionality
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    
+    searchBtn.addEventListener('click', performSearch);
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') performSearch();
+    });
+    
+    function performSearch() {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+        if (!searchTerm) {
+            loadProductsByCategory('solar-full-kits');
+            return;
+        }
+        
+        const products = getProductsFromStorage();
+        const filteredProducts = products.filter(product => 
+            product.name.toLowerCase().includes(searchTerm) ||
+            product.id.toLowerCase().includes(searchTerm) ||
+            product.shortDesc.toLowerCase().includes(searchTerm) ||
+            product.category.toLowerCase().includes(searchTerm)
+        );
+        
+        const productsContainer = document.getElementById('productsContainer');
+        productsContainer.innerHTML = '';
+        
+        if (filteredProducts.length === 0) {
+            productsContainer.innerHTML = `
+                <div class="category-section active">
+                    <h3>Search Results</h3>
+                    <div class="no-products">
+                        <i class="fas fa-search"></i>
+                        <h4>No Products Found</h4>
+                        <p>No products match your search for "${searchTerm}"</p>
+                    </div>
+                </div>
+            `;
+            return;
+        }
+        
+        const resultsSection = document.createElement('div');
+        resultsSection.className = 'category-section active';
+        resultsSection.innerHTML = `<h3>Search Results for "${searchTerm}"</h3>`;
+        
+        const productsGrid = document.createElement('div');
+        productsGrid.className = 'products-grid';
+        
+        filteredProducts.forEach(product => {
+            const productCard = createProductCard(product);
+            productsGrid.appendChild(productCard);
+        });
+        
+        resultsSection.appendChild(productsGrid);
+        productsContainer.appendChild(resultsSection);
+    }
+    
+    // Contact button - Show general inquiry form
+    document.getElementById('contactBtn').addEventListener('click', () => {
+        showGeneralInquiryForm();
+    });
+    
+    // Show general inquiry form
+    function showGeneralInquiryForm() {
+        const modalHTML = `
+            <div id="generalInquiryModal" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;z-index:2000;padding:20px;">
+                <div style="background:white;border-radius:15px;width:100%;max-width:600px;max-height:90vh;overflow-y:auto;position:relative;">
+                    <div style="padding:25px 30px;background:linear-gradient(90deg,var(--secondary),var(--dark));color:white;border-radius:15px 15px 0 0;display:flex;justify-content:space-between;align-items:center;">
+                        <h2 style="margin:0;font-size:1.5rem;">Custom Solar Solutions Inquiry</h2>
+                        <button id="closeGeneralModal" style="background:none;border:none;color:white;font-size:1.8rem;cursor:pointer;padding:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center;">×</button>
+                    </div>
+                    <div style="padding:30px;">
+                        <div style="background:#f0f7ff;padding:20px;border-radius:10px;margin-bottom:25px;border-left:4px solid var(--primary);">
+                            <h4 style="margin-bottom:10px;color:var(--secondary);">
+                                <i class="fas fa-lightbulb"></i> Tell Us About Your Needs
+                            </h4>
+                            <p style="color:#555;margin:0;">
+                                Our solar experts will analyze your requirements and provide a customized solution tailored to your specific needs and budget.
+                            </p>
+                        </div>
+                        
+                        <form id="generalInquiryForm">
+                            <div style="margin-bottom:20px;">
+                                <label style="display:block;margin-bottom:8px;font-weight:600;color:#333;">Full Name *</label>
+                                <input type="text" id="generalClientName" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:8px;font-size:1rem;" required placeholder="Enter your full name">
+                            </div>
+                            
+                            <div style="margin-bottom:20px;">
+                                <label style="display:block;margin-bottom:8px;font-weight:600;color:#333;">Email Address *</label>
+                                <input type="email" id="generalClientEmail" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:8px;font-size:1rem;" required placeholder="Enter your email address">
+                            </div>
+                            
+                            <div style="margin-bottom:20px;">
+                                <label style="display:block;margin-bottom:8px;font-weight:600;color:#333;">Phone Number *</label>
+                                <input type="tel" id="generalClientPhone" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:8px;font-size:1rem;" required placeholder="Enter your phone number">
+                            </div>
+                            
+                            <div style="margin-bottom:20px;">
+                                <label style="display:block;margin-bottom:8px;font-weight:600;color:#333;">Your Location</label>
+                                <input type="text" id="clientLocation" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:8px;font-size:1rem;" placeholder="City/Region (optional)">
+                            </div>
+                            
+                            <div style="margin-bottom:25px;">
+                                <label style="display:block;margin-bottom:8px;font-weight:600;color:#333;">Your Requirements *</label>
+                                <textarea id="generalClientMessage" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:8px;font-size:1rem;min-height:150px;resize:vertical;" required placeholder="Tell us about your solar energy needs:
+- What is your main purpose? (Home, Business, Farm, etc.)
+- What is your approximate budget?
+- Any specific products you're interested in?
+- Any other requirements or questions..."></textarea>
+                            </div>
+                            
+                            <button type="submit" style="background:var(--primary);color:white;border:none;padding:15px;width:100%;border-radius:8px;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all 0.3s;">
+                                <i class="fas fa-paper-plane"></i> Submit Requirements
+                            </button>
+                        </form>
+                        
+                        <div style="margin-top:25px;padding-top:20px;border-top:1px solid #eee;text-align:center;">
+                            <p style="color:#666;font-size:0.9rem;">
+                                <i class="fas fa-clock"></i> Response time: Within 24 hours<br>
+                                <i class="fas fa-user-tie"></i> Free expert consultation included
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Remove any existing modal first
+        const existingModal = document.getElementById('generalInquiryModal');
+        if (existingModal) {
+            existingModal.remove();
+        }
+        
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+        
+        // Setup general inquiry modal events
+        const modal = document.getElementById('generalInquiryModal');
+        const closeBtn = document.getElementById('closeGeneralModal');
+        const form = document.getElementById('generalInquiryForm');
+        
+        if (!modal || !closeBtn || !form) return;
+        
+        closeBtn.addEventListener('click', function() {
+            modal.remove();
+        });
+        
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.remove();
+            }
+        });
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal) {
+                modal.remove();
+            }
+        });
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const clientName = document.getElementById('generalClientName').value.trim();
+            const clientEmail = document.getElementById('generalClientEmail').value.trim();
+            const clientPhone = document.getElementById('generalClientPhone').value.trim();
+            const clientLocation = document.getElementById('clientLocation').value.trim();
+            const clientMessage = document.getElementById('generalClientMessage').value.trim();
+            
+            if (!clientName || !clientEmail || !clientPhone || !clientMessage) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            if (!validateEmail(clientEmail)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            const fullMessage = clientLocation ? 
+                `Location: ${clientLocation}\n\n${clientMessage}` : 
+                clientMessage;
+            
+            saveClientInquiry({
+                productId: 'CUSTOM',
+                productName: 'Custom Solar Solution',
+                productCategory: 'custom',
+                clientName: clientName,
+                clientEmail: clientEmail,
+                clientPhone: clientPhone,
+                clientMessage: fullMessage,
+                date: new Date().toISOString()
+            });
+            
+            alert('Thank you for your inquiry! Our solar experts will contact you within 24 hours with a customized solution.');
+            modal.remove();
+        });
+    }
+    
+    // Email validation
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+    
+    // Save client inquiry to localStorage
+    function saveClientInquiry(inquiry) {
+        try {
+            const existingJSON = localStorage.getItem('solarStoreSubmissions');
+            const existingInquiries = existingJSON ? JSON.parse(existingJSON) : [];
+            
+            existingInquiries.unshift(inquiry);
+            localStorage.setItem('solarStoreSubmissions', JSON.stringify(existingInquiries));
+            
+            console.log('Inquiry saved successfully:', inquiry);
+        } catch (error) {
+            console.error('Error saving inquiry:', error);
+            try {
+                const fallback = JSON.parse(sessionStorage.getItem('solarStoreSubmissions_fallback') || '[]');
+                fallback.unshift(inquiry);
+                sessionStorage.setItem('solarStoreSubmissions_fallback', JSON.stringify(fallback));
+            } catch (e) {
+                console.error('Failed to save inquiry in sessionStorage:', e);
+            }
+        }
+    }
+    
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+    
+    // Initialize
+    showSlide(0);
+    startAutoSlide();
+    loadProductsByCategory('solar-full-kits');
+</script>
+</body>
+</html>

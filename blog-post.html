@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post - Solar Prime Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-dark: #0f2027;
+            --primary-mid: #203a43;
+            --primary-light: #2c5364;
+            --solar-orange: #FF9800;
+            --inverter-blue: #2196F3;
+            --battery-green: #4CAF50;
+            --light-bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-dark: #333;
+            --text-light: #666;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+            
+            /* Blog colors */
+            --blog-blue: #3498db;
+            --blog-green: #2ecc71;
+            --blog-purple: #9b59b6;
+            --blog-red: #e74c3c;
+            --blog-yellow: #f1c40f;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--light-bg) 0%, #e9ecef 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(90deg, var(--primary-dark), var(--primary-light));
+            color: white;
+            padding: 1.5rem 5%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo i {
+            font-size: 2.2rem;
+            color: #FFD700;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: #FFD700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.25);
+            border: 2px solid #FFD700;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            text-decoration: none;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid transparent;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: #FFD700;
+            transform: translateY(-2px);
+        }
+
+        .blog-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 5%;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+
+        .blog-header-image {
+            height: 400px;
+            width: 100%;
+            background: linear-gradient(45deg, #f5f7fa, #c3cfe2);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .blog-header-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .blog-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 30px;
+            color: white;
+        }
+
+        .blog-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px;
+            border-bottom: 2px solid #e1e5eb;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        .author-details h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .author-details .blog-date {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .blog-stats {
+            display: flex;
+            gap: 25px;
+        }
+
+        .blog-stat {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        .blog-stat i {
+            color: var(--primary-light);
+        }
+
+        .blog-category-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 0 30px -15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .blog-category-tips {
+            background: rgba(52, 152, 219, 0.1);
+            color: var(--blog-blue);
+            border: 1px solid rgba(52, 152, 219, 0.3);
+        }
+
+        .blog-category-installation {
+            background: rgba(46, 204, 113, 0.1);
+            color: var(--blog-green);
+            border: 1px solid rgba(46, 204, 113, 0.3);
+        }
+
+        .blog-category-maintenance {
+            background: rgba(155, 89, 182, 0.1);
+            color: var(--blog-purple);
+            border: 1px solid rgba(155, 89, 182, 0.3);
+        }
+
+        .blog-category-news {
+            background: rgba(231, 76, 60, 0.1);
+            color: var(--blog-red);
+            border: 1px solid rgba(231, 76, 60, 0.3);
+        }
+
+        .blog-category-case-studies {
+            background: rgba(241, 196, 15, 0.1);
+            color: var(--blog-yellow);
+            border: 1px solid rgba(241, 196, 15, 0.3);
+        }
+
+        .blog-content {
+            padding: 40px;
+        }
+
+        .regular-blog-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .regular-blog-content h2 {
+            color: var(--primary-dark);
+            margin: 40px 0 20px;
+            font-size: 1.8rem;
+        }
+
+        .regular-blog-content h3 {
+            color: var(--primary-mid);
+            margin: 30px 0 15px;
+            font-size: 1.5rem;
+        }
+
+        .regular-blog-content p {
+            margin-bottom: 25px;
+        }
+
+        .regular-blog-content ul, .regular-blog-content ol {
+            margin-left: 40px;
+            margin-bottom: 25px;
+        }
+
+        .regular-blog-content img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+        .regular-blog-content blockquote {
+            border-left: 4px solid var(--primary-light);
+            padding-left: 25px;
+            margin: 30px 0;
+            font-style: italic;
+            color: #666;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* HTML Blog Content Styles */
+        .html-blog-container {
+            margin: 20px 0;
+        }
+
+        .html-blog-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--solar-orange);
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .blog-iframe {
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            background: white;
+        }
+
+        .blog-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 40px 0;
+            padding: 30px;
+            border-top: 2px solid #e1e5eb;
+            border-bottom: 2px solid #e1e5eb;
+        }
+
+        .blog-tag {
+            background: var(--light-bg);
+            color: var(--text-dark);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .blog-tag:hover {
+            background: var(--primary-light);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .blog-actions {
+            display: flex;
+            gap: 15px;
+            padding: 0 30px 30px;
+        }
+
+        .action-btn {
+            padding: 12px 25px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .like-btn {
+            background: #ff6b6b20;
+            color: #ff6b6b;
+            border: 1px solid #ff6b6b40;
+        }
+
+        .like-btn:hover {
+            background: #ff6b6b30;
+        }
+
+        .like-btn.liked {
+            background: #ff6b6b;
+            color: white;
+            border-color: #ff6b6b;
+        }
+
+        .share-btn {
+            background: var(--primary-light);
+            color: white;
+        }
+
+        .share-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .related-posts {
+            margin-top: 60px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .related-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .related-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .related-image {
+            height: 160px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .related-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .related-card:hover .related-image img {
+            transform: scale(1.1);
+        }
+
+        .related-content {
+            padding: 20px;
+        }
+
+        .related-content h4 {
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .related-excerpt {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .related-date {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        .error-container {
+            text-align: center;
+            padding: 100px 20px;
+            color: var(--text-light);
+        }
+
+        .error-container i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        .error-container h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .error-container p {
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto 30px;
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .blog-title {
+                font-size: 2rem;
+            }
+            
+            .blog-header-image {
+                height: 300px;
+            }
+            
+            .blog-meta {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+            
+            .blog-stats {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .blog-content {
+                padding: 25px;
+            }
+            
+            .blog-actions {
+                flex-direction: column;
+            }
+            
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .blog-title {
+                font-size: 1.6rem;
+            }
+            
+            .blog-header-image {
+                height: 250px;
+            }
+            
+            .blog-overlay {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-sun"></i>
+                <h1>Solar Prime <span>Solutions</span></h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="product.html" class="nav-link">
+                    <i class="fas fa-solar-panel"></i> Products
+                </a>
+                <a href="project.html" class="nav-link active">
+                    <i class="fas fa-blog"></i> projects
+                </a>
+                <a href="blogs.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Blogs
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="blog-container">
+        <div id="blogContent">
+            <!-- Blog content will be loaded here -->
+        </div>
+
+        <!-- Related Posts -->
+        <div class="related-posts" id="relatedPosts" style="display: none;">
+            <h2 class="section-title"><i class="fas fa-newspaper"></i> Related Articles</h2>
+            <div class="related-grid" id="relatedGrid">
+                <!-- Related posts will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Error State -->
+    <div class="error-container" id="errorState" style="display: none;">
+        <i class="fas fa-exclamation-circle"></i>
+        <h2>Blog Post Not Found</h2>
+        <p>The blog post you're looking for doesn't exist or has been removed.</p>
+        <a href="blogs.html" class="back-btn" style="display: inline-flex;">
+            <i class="fas fa-arrow-left"></i> Back to Blogs
+        </a>
+    </div>
+
+    <script>
+        // Global variables
+        let currentBlog = null;
+        let likedBlogs = JSON.parse(localStorage.getItem('solarBlogLikes')) || {};
+        let blogViews = JSON.parse(localStorage.getItem('solarBlogViews')) || {};
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Loading blog post...');
+            loadBlogPost();
+        });
+
+        // Load blog post from URL parameter
+        function loadBlogPost() {
+            try {
+                // Get blog ID from URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const blogId = urlParams.get('blog');
+                
+                if (!blogId) {
+                    showError();
+                    return;
+                }
+                
+                // Load blogs from localStorage
+                const blogsJSON = localStorage.getItem('solarStoreBlogs');
+                const allBlogs = blogsJSON ? JSON.parse(blogsJSON) : [];
+                
+                if (!Array.isArray(allBlogs)) {
+                    showError();
+                    return;
+                }
+                
+                // Find the blog
+                currentBlog = allBlogs.find(b => b.id === blogId);
+                
+                if (!currentBlog) {
+                    showError();
+                    return;
+                }
+                
+                // Increment view count
+                blogViews[blogId] = (blogViews[blogId] || 0) + 1;
+                localStorage.setItem('solarBlogViews', JSON.stringify(blogViews));
+                
+                // Update page title
+                document.title = `${currentBlog.title} - Solar Prime Solutions`;
+                
+                // Display blog
+                displayBlogPost(currentBlog);
+                
+                // Load related posts
+                loadRelatedPosts(blogId);
+                
+            } catch (error) {
+                console.error('Error loading blog post:', error);
+                showError();
+            }
+        }
+
+        // Display blog post
+        function displayBlogPost(blog) {
+            const blogContent = document.getElementById('blogContent');
+            if (!blogContent) return;
+            
+            // Format date
+            const date = new Date(blog.datePublished);
+            const formattedDate = date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            // Get category class and name
+            const categoryClass = getBlogCategoryClass(blog.category);
+            const categoryName = getBlogCategoryName(blog.category);
+            
+            // Create blog HTML
+            let blogHtml = `
+                <div class="blog-card">
+                    <div class="blog-header-image">
+                        ${blog.imageData ? 
+                            `<img src="${blog.imageData}" alt="${blog.title}">` : 
+                            `<div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+                                <i class="fas fa-newspaper fa-5x" style="color: #c3cfe2;"></i>
+                            </div>`
+                        }
+                        <div class="blog-overlay">
+                            <h1 class="blog-title">${blog.title || 'Untitled Blog'}</h1>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-category-badge ${categoryClass}">${categoryName}</div>
+                    
+                    <div class="blog-meta">
+                        <div class="author-info">
+                            <div class="author-avatar">${getAuthorInitials(blog.author)}</div>
+                            <div class="author-details">
+                                <h3>${blog.author || 'Solar Prime Team'}</h3>
+                                <div class="blog-date">${formattedDate}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="blog-stats">
+                            <div class="blog-stat">
+                                <i class="fas fa-clock"></i>
+                                <span>${blog.readingTime || 3} min read</span>
+                            </div>
+                            <div class="blog-stat">
+                                <i class="fas fa-eye"></i>
+                                <span>${formatNumber(blogViews[blog.id] || 0)} views</span>
+                            </div>
+                            <div class="blog-stat">
+                                <i class="fas fa-heart"></i>
+                                <span>${formatNumber(blog.likes || 0)} likes</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-content">
+            `;
+            
+            // Add content based on type
+            if (blog.type === 'html') {
+                // HTML paste mode content
+                blogHtml += `
+                    <div class="html-blog-container">
+                        <div class="html-blog-info">
+                            <p><i class="fas fa-info-circle"></i> This blog post contains custom HTML content. Viewing in a sandboxed iframe for security.</p>
+                        </div>
+                        ${blog.content || ''}
+                    </div>
+                `;
+            } else {
+                // Regular editor content
+                blogHtml += `
+                    <div class="regular-blog-content">
+                        ${blog.content || '<p>Content not available</p>'}
+                    </div>
+                `;
+            }
+            
+            // Add tags and actions
+            blogHtml += `
+                        ${blog.tags && blog.tags.length > 0 ? `
+                            <div class="blog-tags">
+                                ${blog.tags.map(tag => `<span class="blog-tag">${tag}</span>`).join('')}
+                            </div>
+                        ` : ''}
+                        
+                        <div class="blog-actions">
+                            <button class="action-btn like-btn ${likedBlogs[blog.id] ? 'liked' : ''}" id="likeBtn" onclick="toggleLike()">
+                                <i class="fas fa-heart"></i> <span>${likedBlogs[blog.id] ? 'Liked' : 'Like'}</span>
+                            </button>
+                            <button class="action-btn share-btn" onclick="shareBlog()">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            blogContent.innerHTML = blogHtml;
+        }
+
+        // Get blog category class
+        function getBlogCategoryClass(category) {
+            const classes = {
+                'tips': 'blog-category-tips',
+                'installation': 'blog-category-installation',
+                'maintenance': 'blog-category-maintenance',
+                'news': 'blog-category-news',
+                'case-studies': 'blog-category-case-studies'
+            };
+            return classes[category] || 'blog-category-tips';
+        }
+
+        // Get blog category name
+        function getBlogCategoryName(category) {
+            const names = {
+                'tips': 'Solar Tips & Tricks',
+                'installation': 'Installation Guides',
+                'maintenance': 'Maintenance Tips',
+                'news': 'Industry News',
+                'case-studies': 'Case Studies'
+            };
+            return names[category] || 'Solar Tips';
+        }
+
+        // Get author initials
+        function getAuthorInitials(author) {
+            if (!author) return 'ST';
+            return author.split(' ').map(word => word[0]).join('').toUpperCase().slice(0, 2);
+        }
+
+        // Format number with commas
+        function formatNumber(num) {
+            return num.toLocaleString();
+        }
+
+        // Toggle like
+        function toggleLike() {
+            if (!currentBlog) return;
+            
+            // Load blogs to update
+            const blogsJSON = localStorage.getItem('solarStoreBlogs');
+            let allBlogs = blogsJSON ? JSON.parse(blogsJSON) : [];
+            
+            if (!Array.isArray(allBlogs)) return;
+            
+            // Find and update blog
+            const blogIndex = allBlogs.findIndex(b => b.id === currentBlog.id);
+            if (blogIndex === -1) return;
+            
+            // Toggle like status
+            likedBlogs[currentBlog.id] = !likedBlogs[currentBlog.id];
+            
+            // Update blog likes count
+            if (likedBlogs[currentBlog.id]) {
+                allBlogs[blogIndex].likes = (allBlogs[blogIndex].likes || 0) + 1;
+            } else {
+                allBlogs[blogIndex].likes = Math.max(0, (allBlogs[blogIndex].likes || 0) - 1);
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('solarBlogLikes', JSON.stringify(likedBlogs));
+            localStorage.setItem('solarStoreBlogs', JSON.stringify(allBlogs));
+            
+            // Update current blog
+            currentBlog = allBlogs[blogIndex];
+            
+            // Update UI
+            const likeBtn = document.getElementById('likeBtn');
+            if (likeBtn) {
+                likeBtn.className = `action-btn like-btn ${likedBlogs[currentBlog.id] ? 'liked' : ''}`;
+                likeBtn.innerHTML = `<i class="fas fa-heart"></i> <span>${likedBlogs[currentBlog.id] ? 'Liked' : 'Like'}</span>`;
+                
+                // Update likes count in stats
+                const likesStat = document.querySelector('.blog-stat:nth-child(3) span');
+                if (likesStat) {
+                    likesStat.textContent = formatNumber(currentBlog.likes || 0) + ' likes';
+                }
+            }
+        }
+
+        // Share blog
+        function shareBlog() {
+            if (!currentBlog) return;
+            
+            const shareUrl = window.location.href;
+            const shareText = `Check out this blog post: "${currentBlog.title}" by Solar Prime Solutions`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: currentBlog.title,
+                    text: shareText,
+                    url: shareUrl
+                });
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                const shareData = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
+                window.open(shareData, '_blank');
+            }
+        }
+
+        // Load related posts
+        function loadRelatedPosts(currentBlogId) {
+            const blogsJSON = localStorage.getItem('solarStoreBlogs');
+            const allBlogs = blogsJSON ? JSON.parse(blogsJSON) : [];
+            
+            if (!Array.isArray(allBlogs) || allBlogs.length <= 1) return;
+            
+            // Get current blog
+            const currentBlog = allBlogs.find(b => b.id === currentBlogId);
+            if (!currentBlog) return;
+            
+            // Find related posts (same category, excluding current)
+            const relatedBlogs = allBlogs
+                .filter(blog => 
+                    blog.id !== currentBlogId && 
+                    blog.category === currentBlog.category
+                )
+                .slice(0, 3); // Take up to 3 related posts
+            
+            if (relatedBlogs.length === 0) return;
+            
+            // Display related posts
+            const relatedPosts = document.getElementById('relatedPosts');
+            const relatedGrid = document.getElementById('relatedGrid');
+            
+            if (!relatedPosts || !relatedGrid) return;
+            
+            relatedPosts.style.display = 'block';
+            relatedGrid.innerHTML = '';
+            
+            relatedBlogs.forEach(blog => {
+                const date = new Date(blog.datePublished);
+                const formattedDate = date.toLocaleDateString('en-US', { 
+                    month: 'short', 
+                    day: 'numeric',
+                    year: 'numeric'
+                });
+                
+                const card = document.createElement('div');
+                card.className = 'related-card';
+                card.onclick = () => window.location.href = `blog-post.html?blog=${blog.id}`;
+                
+                card.innerHTML = `
+                    <div class="related-image">
+                        ${blog.imageData ? 
+                            `<img src="${blog.imageData}" alt="${blog.title}">` : 
+                            `<div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f5f7fa;">
+                                <i class="fas fa-newspaper fa-2x" style="color: #c3cfe2;"></i>
+                            </div>`
+                        }
+                    </div>
+                    <div class="related-content">
+                        <h4>${blog.title.length > 60 ? blog.title.substring(0, 60) + '...' : blog.title}</h4>
+                        <p class="related-excerpt">${blog.excerpt ? (blog.excerpt.length > 100 ? blog.excerpt.substring(0, 100) + '...' : blog.excerpt) : ''}</p>
+                        <div class="related-date">${formattedDate}</div>
+                    </div>
+                `;
+                
+                relatedGrid.appendChild(card);
+            });
+        }
+
+        // Show error state
+        function showError() {
+            const blogContent = document.getElementById('blogContent');
+            const errorState = document.getElementById('errorState');
+            
+            if (blogContent) {
+                blogContent.style.display = 'none';
+            }
+            if (errorState) {
+                errorState.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
