@@ -1,0 +1,413 @@
+---
+// This file goes at: src/pages/blog/[...slug].astro
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{post.data.title} - Solar Prime Solutions</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo-text">☀️ Solar Prime Solutions</div>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/product">Products</a>
+                <a href="/project">Projects</a>
+                <a href="/blog">Blog</a>
+                <a href="/#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="post-container">
+        <!-- Back to Blog link -->
+        <a class="back-link" href="/blog">← Back to Blog</a>
+
+        <!-- Post Header -->
+        <div class="post-header">
+            <span class="post-category">{post.data.category}</span>
+            <h1>{post.data.title}</h1>
+            <div class="post-meta">
+                <span class="post-date">
+                    📅 {new Date(post.data.date).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                    })}
+                </span>
+            </div>
+        </div>
+
+        <!-- Blog Content - baseline typography lives here in the layout.
+             Individual posts only need to write CSS for things unique to
+             them (calculators, callouts, stat grids, etc). -->
+        <div class="post-body">
+            <Content />
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="footer-logo">☀️ Solar Prime Solutions</span>
+                <p>Powering Kenya's sustainable future with innovative solar solutions.</p>
+            </div>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/product">Products</a>
+                <a href="/project">Projects</a>
+                <a href="/blog">Blog</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Solar Prime Solutions. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <style is:global>
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FFA500;
+            --secondary: #1E3A8A;
+            --dark: #0F172A;
+            --light: #F8FAFC;
+            --gray: #64748b;
+            --gray-light: #e2e8f0;
+        }
+
+        body {
+            background-color: var(--light);
+        }
+
+        /* NAVIGATION */
+        header {
+            background: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* MAIN CONTAINER */
+        .post-container {
+            width: 100%;
+            max-width: 100%;
+            padding: 2rem 0 5rem;
+        }
+
+        /* BACK LINK */
+        .back-link {
+            display: inline-block;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* POST HEADER */
+        .post-header {
+            max-width: 720px;
+            margin: 0 auto 2rem;
+            padding: 0 2rem;
+        }
+
+        .post-category {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary);
+            background: rgba(255, 165, 0, 0.1);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .post-header h1 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin: 0.5rem 0;
+            line-height: 1.3;
+        }
+
+        .post-meta {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* ============================================================
+           POST BODY — baseline typography for every blog post.
+           This is the ONLY place that should define how plain markdown
+           (paragraphs, headings, lists, links, images, tables, quotes)
+           looks. Individual posts should only add CSS for elements that
+           are unique to them — a calculator, a callout box, a stat grid,
+           etc — never for plain text. That's what keeps each post file
+           short and self-contained instead of repeating boilerplate.
+           ============================================================ */
+        .post-body {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+            color: #1a1a1a;
+            font-size: 1.05rem;
+            line-height: 1.75;
+        }
+
+        .post-body p {
+            margin: 0 0 1.3rem;
+        }
+
+        .post-body h2 {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin: 2.4rem 0 1rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid var(--gray-light);
+        }
+
+        .post-body h3 {
+            color: var(--secondary);
+            font-size: 1.15rem;
+            margin: 1.5rem 0 0.6rem;
+        }
+
+        .post-body h4 {
+            color: var(--secondary);
+            font-size: 1rem;
+            margin: 1.2rem 0 0.5rem;
+        }
+
+        .post-body ul,
+        .post-body ol {
+            margin: 0 0 1.3rem 1.4rem;
+        }
+
+        .post-body li {
+            margin-bottom: 0.4rem;
+        }
+
+        .post-body a {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .post-body strong {
+            color: var(--secondary);
+        }
+
+        .post-body blockquote {
+            margin: 0 0 1.3rem;
+            padding: 0.8rem 1.2rem;
+            border-left: 4px solid var(--primary);
+            background: #fff8ec;
+            color: var(--gray);
+            font-style: italic;
+        }
+
+        .post-body img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+        }
+
+        .post-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 0 1.5rem;
+            font-size: 0.92rem;
+        }
+
+        .post-body th {
+            background: var(--secondary);
+            color: #fff;
+            text-align: left;
+            padding: 0.7rem 0.9rem;
+        }
+
+        .post-body td {
+            padding: 0.7rem 0.9rem;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .post-body tr:nth-child(even) td {
+            background: var(--light);
+        }
+
+        .post-body hr {
+            border: none;
+            border-top: 1px solid var(--gray-light);
+            margin: 2rem 0;
+        }
+
+        .post-body code {
+            background: var(--light);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--dark);
+            color: #e2e8f0;
+            padding: 3rem 2rem 1.5rem;
+        }
+
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-brand .footer-logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .footer-brand p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            max-width: 1000px;
+            margin: 1.5rem auto 0;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem 5%;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .post-container {
+                padding: 1rem 0 3rem;
+            }
+
+            .post-header {
+                padding: 0 1rem;
+            }
+
+            .post-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .post-body {
+                padding: 0 1rem 3rem;
+            }
+
+            .back-link {
+                padding: 0 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .footer-links {
+                align-items: center;
+            }
+        }
+    </style>
+</body>
+</html>

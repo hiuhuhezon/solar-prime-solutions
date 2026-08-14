@@ -1,0 +1,772 @@
+---
+// This file goes at: src/pages/blog/index.astro
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog');
+const posts = allPosts.sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+
+// Build category counts
+const categoryCounts = {};
+posts.forEach((post) => {
+  const cat = post.data.category;
+  categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
+});
+const categories = Object.entries(categoryCounts).sort((a, b) => b[1] - a[1]);
+
+// Category icon mapping
+const categoryIcons = {
+  'Case Studies': '📋',
+  'Installation Guides': '🔧',
+  'Solar Tips & Tricks': '💡',
+  'Technology': '💡',
+  'Installation': '🔧',
+  'Industry': '🏭',
+  'Guide': '📖',
+  'Tips': '💡',
+  'Solar': '☀️',
+  'Energy': '⚡',
+  'Maintenance': '🛠️',
+  'Sustainability': '🌱'
+};
+
+function getCategoryIcon(category) {
+  return categoryIcons[category] || '📄';
+}
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog - Solar Prime Solutions</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo-text">Solar Prime Solutions</div>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/product">Products</a>
+                <a href="/project">Projects</a>
+                <a href="/blog">Blog</a>
+                <a href="/#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="blog-main">
+        <div class="blog-container">
+            <!-- LEFT SIDEBAR - Categories (Desktop) -->
+            <aside class="blog-sidebar" id="desktopSidebar">
+                <div class="sidebar-header">
+                    <h3>Categories</h3>
+                </div>
+                
+                {posts.length > 0 && (
+                    <div class="category-list" id="categoryBar">
+                        <button class="category-item active" data-category="all">
+                            <span class="category-name">All Categories</span>
+                            <span class="category-count">{posts.length}</span>
+                        </button>
+                        {categories.map(([name, count]) => (
+                            <button class="category-item" data-category={name}>
+                                <span class="category-name">{name}</span>
+                                <span class="category-count">{count}</span>
+                            </button>
+                        ))}
+                    </div>
+                )}
+            </aside>
+
+            <!-- RIGHT CONTENT - Blog Posts -->
+            <section class="blog-content">
+                <!-- Mobile Category Dropdown -->
+                <div class="mobile-category-nav" id="mobileCategoryNav">
+                    <button class="category-dropdown-btn" id="categoryDropdownBtn">
+                        <span id="selectedCategoryLabel">All Categories</span>
+                        <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="category-dropdown-menu" id="categoryDropdownMenu">
+                        <button class="dropdown-item active" data-category="all">
+                            All Categories <span>({posts.length})</span>
+                        </button>
+                        {categories.map(([name, count]) => (
+                            <button class="dropdown-item" data-category={name}>
+                                {name} <span>({count})</span>
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
+                {posts.length === 0 && (
+                    <p class="empty">No blog posts yet.</p>
+                )}
+
+                <div class="post-list" id="postList">
+                    {posts.map((post) => (
+                        <article class="post-item" data-category={post.data.category}>
+                            <div class="post-wrapper">
+                                {post.data.image && (
+                                    <div class="post-image">
+                                        <img src={post.data.image} alt={post.data.title} loading="lazy" />
+                                    </div>
+                                )}
+                                
+                                <div class="post-details">
+                                    <div class="post-header">
+                                        <span class="post-category">{post.data.category}</span>
+                                        <span class="post-read-time">1 min read</span>
+                                    </div>
+                                    
+                                    <h2 class="post-title">{post.data.title}</h2>
+                                    <p class="post-excerpt">{post.data.excerpt || 'Start writing your amazing blog post here...'}</p>
+                                    
+                                    <div class="post-footer">
+                                        <span class="post-date">
+                                            {new Date(post.data.date).toLocaleDateString('en-US', {
+                                                year: 'numeric',
+                                                month: 'short',
+                                                day: 'numeric',
+                                            })}
+                                        </span>
+                                    </div>
+                                    
+                                    <a href={`/blog/${post.id}`} class="read-more">Read Full Article →</a>
+                                </div>
+                            </div>
+                        </article>
+                    ))}
+                </div>
+
+                <p class="no-match" id="noMatch" style="display:none;">No posts in this category yet.</p>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="footer-logo">Solar Prime Solutions</span>
+                <p>Powering Kenya's sustainable future with innovative solar solutions.</p>
+            </div>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/product">Products</a>
+                <a href="/project">Projects</a>
+                <a href="/blog">Blog</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Solar Prime Solutions. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <style is:global>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #FFA500;
+            --secondary: #1E3A8A;
+            --dark: #0F172A;
+            --light: #F8FAFC;
+            --gray: #64748b;
+            --gray-light: #e2e8f0;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+        }
+
+        body {
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Main Layout - Two Column */
+        .blog-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 2rem 4rem;
+        }
+
+        .blog-container {
+            display: flex;
+            gap: 3rem;
+            align-items: flex-start;
+        }
+
+        /* LEFT SIDEBAR */
+        .blog-sidebar {
+            flex: 0 0 220px;
+            position: sticky;
+            top: 100px;
+            align-self: flex-start;
+        }
+
+        .sidebar-header h3 {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--gray-light);
+        }
+
+        .category-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .category-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.6rem 0.8rem;
+            background: transparent;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--gray);
+            width: 100%;
+            text-align: left;
+        }
+
+        .category-item:hover {
+            background: var(--gray-light);
+            color: var(--dark);
+        }
+
+        .category-item.active {
+            background: var(--secondary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .category-item .category-count {
+            background: var(--gray-light);
+            padding: 0.05rem 0.6rem;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray);
+        }
+
+        .category-item.active .category-count {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        /* Mobile Category Navigation */
+        .mobile-category-nav {
+            display: none;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .category-dropdown-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: white;
+            border: 2px solid var(--gray-light);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-dropdown-btn:hover {
+            border-color: var(--primary);
+        }
+
+        .category-dropdown-btn.active {
+            border-color: var(--secondary);
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .dropdown-arrow {
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .category-dropdown-btn.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .category-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 2px solid var(--secondary);
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            z-index: 50;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .category-dropdown-menu.open {
+            display: block;
+        }
+
+        .dropdown-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 0.7rem 1rem;
+            background: transparent;
+            border: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--gray);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+        }
+
+        .dropdown-item:hover {
+            background: var(--gray-light);
+            color: var(--dark);
+        }
+
+        .dropdown-item.active {
+            background: var(--secondary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .dropdown-item span {
+            color: var(--gray);
+            font-weight: 400;
+            font-size: 0.8rem;
+        }
+
+        .dropdown-item.active span {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* RIGHT CONTENT - Blog Posts */
+        .blog-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .post-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .post-item {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-light);
+            transition: all 0.3s ease;
+        }
+
+        .post-item:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-item.hidden {
+            display: none;
+        }
+
+        .post-wrapper {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.2rem;
+        }
+
+        .post-image {
+            flex: 0 0 180px;
+            height: 150px;
+            border-radius: 6px;
+            overflow: hidden;
+            background: var(--gray-light);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .post-item:hover .post-image img {
+            transform: scale(1.05);
+        }
+
+        .post-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+
+        .post-category {
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.75rem;
+        }
+
+        .post-read-time {
+            color: var(--gray);
+            font-size: 0.75rem;
+        }
+
+        .post-title {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            font-weight: 700;
+            margin: 0.2rem 0;
+            line-height: 1.3;
+        }
+
+        .post-excerpt {
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 0.2rem 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .post-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.3rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--gray-light);
+        }
+
+        .post-date {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .post-stats {
+            display: flex;
+            gap: 0.8rem;
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 0.2rem;
+        }
+
+        .read-more {
+            display: inline-block;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-top: 0.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: var(--primary);
+        }
+
+        .no-match {
+            color: var(--gray);
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .empty {
+            color: var(--gray);
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: #e2e8f0;
+            padding: 3rem 2rem 1.5rem;
+        }
+
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-brand .footer-logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .footer-brand p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            max-width: 1000px;
+            margin: 1.5rem auto 0;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .blog-sidebar {
+                flex: 0 0 180px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem 5%;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .blog-main {
+                padding: 1rem 1rem 3rem;
+            }
+
+            .blog-container {
+                flex-direction: column;
+            }
+
+            /* Hide desktop sidebar on mobile */
+            .blog-sidebar {
+                display: none;
+            }
+
+            /* Show mobile category nav */
+            .mobile-category-nav {
+                display: block;
+            }
+
+            .post-wrapper {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .post-image {
+                flex: none;
+                width: 100%;
+                height: 180px;
+            }
+
+            .post-title {
+                font-size: 1.1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .footer-links {
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .post-image {
+                height: 140px;
+            }
+
+            .post-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.3rem;
+            }
+
+            .post-stats {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+
+    <script is:inline>
+        // Mobile dropdown toggle
+        const dropdownBtn = document.getElementById('categoryDropdownBtn');
+        const dropdownMenu = document.getElementById('categoryDropdownMenu');
+        const selectedLabel = document.getElementById('selectedCategoryLabel');
+
+        if (dropdownBtn && dropdownMenu) {
+            dropdownBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                dropdownBtn.classList.toggle('active');
+                dropdownMenu.classList.toggle('open');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', () => {
+                dropdownBtn.classList.remove('active');
+                dropdownMenu.classList.remove('open');
+            });
+
+            // Prevent dropdown from closing when clicking inside
+            dropdownMenu.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        }
+
+        // Category filter functionality (works for both desktop and mobile)
+        const categoryItems = document.querySelectorAll('.category-item, .dropdown-item');
+        const postItems = document.querySelectorAll('.post-item');
+        const noMatch = document.getElementById('noMatch');
+
+        categoryItems.forEach((item) => {
+            item.addEventListener('click', () => {
+                const category = item.getAttribute('data-category');
+                const categoryName = item.textContent.trim().replace(/\(\d+\)/, '').trim();
+
+                // Update desktop active state
+                document.querySelectorAll('.category-item').forEach((i) => {
+                    i.classList.toggle('active', i.getAttribute('data-category') === category);
+                });
+
+                // Update mobile dropdown active state
+                document.querySelectorAll('.dropdown-item').forEach((i) => {
+                    i.classList.toggle('active', i.getAttribute('data-category') === category);
+                });
+
+                // Update selected label
+                if (selectedLabel) {
+                    selectedLabel.textContent = category === 'all' ? 'All Categories' : categoryName;
+                }
+
+                // Close mobile dropdown
+                if (dropdownBtn && dropdownMenu) {
+                    dropdownBtn.classList.remove('active');
+                    dropdownMenu.classList.remove('open');
+                }
+
+                // Filter posts
+                let visibleCount = 0;
+                postItems.forEach((post) => {
+                    const matches = category === 'all' || post.getAttribute('data-category') === category;
+                    post.classList.toggle('hidden', !matches);
+                    if (matches) visibleCount++;
+                });
+
+                // Show/hide no match message
+                noMatch.style.display = visibleCount === 0 ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
