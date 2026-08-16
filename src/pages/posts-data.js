@@ -42,7 +42,7 @@ const POSTS = [
     title: "5 Solar Panel Maintenance Tips Every Homeowner Should Know",
     date: "2026-07-07",
     author: "Solar Prime Solutions",
-    image: "images/Installing-Solar detailed.jpg",
+    image: "images/installing-solar-detailed.jpg",
     excerpt: "Keep your panels running at peak efficiency with these simple, low-cost habits you can start today.",
     content: `
       <p>Solar panels are built to last decades, but a little regular care goes a long way toward keeping them at peak efficiency. Here are five simple habits worth adopting.</p>

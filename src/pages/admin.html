@@ -1002,8 +1002,8 @@
         const loginTime = parseInt(sessionStorage.getItem('loginTime') || '0');
         const sessionTimeout = 2 * 60 * 60 * 1000;
         
-        if (!isLoggedIn || (Date.now() - loginTime) > sessionTimeout) {
-            window.location.href = 'login.html';
+      if (!isLoggedIn || (Date.now() - loginTime) > sessionTimeout) {
+            window.location.href = '/login';
         }
     </script>
 
@@ -1399,7 +1399,7 @@
         function logout() {
             sessionStorage.removeItem('adminLoggedIn');
             sessionStorage.removeItem('loginTime');
-            window.location.href = 'login.html';
+            window.location.href = '/login';
         }
 
         // Global variables
