@@ -10,15 +10,14 @@ The battery is the most expensive part of your solar system. Choose wrong, and y
 
 This guide cuts through the marketing jargon and tells you exactly what works in Kenya, what it costs, and what you should actually buy.
 
-![Solar battery bank installation](https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=1200&q=80)
-
+<img src="/images/batteries.png" alt="Solar battery bank installation">
 <div class="stat-grid">
   <div class="stat-card">
-    <span class="stat-num">10–15 yrs</span>
+    <span class="stat-num">20–30 yrs</span>
     <span class="stat-label">Lithium-ion lifespan with proper use</span>
   </div>
   <div class="stat-card">
-    <span class="stat-num">3–5 yrs</span>
+    <span class="stat-num">5–10 yrs</span>
     <span class="stat-label">Lead-acid lifespan in Kenyan conditions</span>
   </div>
   <div class="stat-card">
@@ -37,7 +36,7 @@ Lithium batteries are the gold standard. They last 10–15 years, you can use up
 
 **Pros:** Long lifespan, deep discharge, lightweight, efficient, no maintenance.  
 **Cons:** Higher upfront cost.  
-**Price:** KSh 180,000 – 400,000 for 5kWh
+**Price:** KSh 300,000 – 450,000 for 5kWh to 10kWh
 
 ### Lead-Acid — The Budget Option
 
@@ -45,7 +44,7 @@ Lead-acid batteries are the cheapest to buy, but they don't last. You can only u
 
 **Pros:** Cheap upfront, widely available.  
 **Cons:** Short life, heavy, needs maintenance, only 50% usable.  
-**Price:** KSh 50,000 – 120,000 for 5kWh
+**Price:** KSh 50,000 – 150,000 for 5kWh to 10kWh
 
 ### Gel Batteries — The Middle Ground
 
@@ -53,7 +52,7 @@ Gel batteries are maintenance-free and last longer than standard lead-acid. They
 
 **Pros:** Maintenance-free, spill-proof.  
 **Cons:** Still limited to 50% discharge, slower charging.  
-**Price:** KSh 80,000 – 180,000 for 5kWh
+**Price:** KSh 150,000 – 250,000 for 5kWh to 10kWh
 
 ## How much battery do you need?
 
@@ -75,9 +74,9 @@ That's why lithium is more cost-effective — you need less battery to do the sa
 
 | Battery type | Upfront cost | Lifespan | Cost over 15 years |
 |-------------|-------------|----------|-------------------|
-| Lithium | KSh 350,000 | 15 years | KSh 350,000 |
-| Lead-Acid | KSh 120,000 | 4 years | KSh 450,000 |
-| Gel | KSh 180,000 | 6 years | KSh 450,000 |
+| Lithium | KSh 350,000 | 25 years | KSh 300,000 |
+| Lead-Acid | KSh 120,000 | 6 years | KSh 250,000 |
+| Gel | KSh 180,000 | 15 years | KSh 100,000 |
 
 Lithium is more expensive upfront but cheaper in the long run. This is the math most installers don't show you.
 

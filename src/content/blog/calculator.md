@@ -3,13 +3,12 @@ title: "Solar Savings Calculator: How Much Can You Really Save?"
 date: "2026-08-14"
 category: "Solar Tools"
 excerpt: "Find out exactly how much you'll save on your Kenya Power bill, how long it takes to break even, and your return on investment — all in under 30 seconds."
-image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1200&q=80"
+image: "/images/calculator.png"
 ---
 
 Thinking about going solar but not sure if it's worth the investment? This calculator gives you a realistic estimate of your savings, payback period, and return on investment based on your actual electricity usage and current Kenya Power rates.
 
-![Solar panels on a rooftop](https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1200&q=80)
-
+<img src="/images/calculator.png"  alt="Solar panels on a rooftop">
 <div class="stat-grid">
   <div class="stat-card">
     <span class="stat-num">KSh 30,000+</span>

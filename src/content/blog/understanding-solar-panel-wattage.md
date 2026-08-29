@@ -1,9 +1,9 @@
 ---
 title: "Understanding Solar Panel Wattage: A Quick Calculation Guide"
 date: "2024-07-02"
-category: "hezbon speaking here"
+category: "Solar Tricks & Tips"
 excerpt: "Learn the simple formula behind sizing a solar system, with a worked example you can adapt to your own home."
-image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=1200&q=80"
+image: "/images/wattage.png"
 ---
 
 One of the most common questions we get from customers is: "How many solar panels do I actually need?" The answer comes down to a simple calculation once you know your daily energy usage.

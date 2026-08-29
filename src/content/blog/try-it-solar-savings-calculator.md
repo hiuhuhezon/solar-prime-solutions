@@ -1,7 +1,7 @@
 ---
 title: "Try It: How Much Could You Save With Solar?"
 date: "2024-07-20"
-category: "Solar Tips & Tricks"
+category: "Solar Tools"
 excerpt: "Use our interactive calculator to estimate your potential monthly and annual savings by switching to solar."
 image: "https://images.unsplash.com/photo-1497440001374-f26997328c1b?w=1200&q=80"
 

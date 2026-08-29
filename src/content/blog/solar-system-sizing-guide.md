@@ -3,7 +3,7 @@ title: "The Complete Guide to Sizing Your Solar System in Kenya"
 date: "2026-08-14"
 category: "Solar Guides"
 excerpt: "Everything you need to understand before you buy: how sizing actually works, what components cost, and a free calculator to estimate your own system."
-image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1200&q=80"
+image: "/images/solar-inverters.jpg"
 ---
 
 If you've ever asked a solar company for a quote and gotten three wildly different numbers back, you're not alone. Solar sizing sounds technical, but the logic behind it is simple once someone walks you through it properly — and that's exactly what this guide does. By the end, you'll understand how installers arrive at a number, what actually drives cost, and you'll have played with a calculator that gives you a rough size for your own home before you ever pick up the phone.
