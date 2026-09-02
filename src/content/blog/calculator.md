@@ -150,9 +150,9 @@ Most homes benefit from a system that covers 70–90% of their total consumption
 
 **System efficiency** — Panels degrade at about 0.5–1% per year. Inverters are 95–98% efficient. We use conservative estimates for realistic numbers.
 
-**Maintenance costs** — Panels need occasional cleaning. Inverters may need replacement after 10–15 years. Budget about 1–2% of system cost annually for maintenance.
+**Maintenance costs** — Panels need occasional cleaning. Inverters may need replacement after 20–25 years. Budget about 1–2% of system cost annually for maintenance.
 
-**Battery replacement** — Lithium batteries last 10–15 years. Lead-acid last 3–5 years. We assume lithium batteries in our calculations.
+**Battery replacement** — Lithium batteries last 20–30 years. Lead-acid last 3–5 years. We assume lithium batteries in our calculations.
 
 ## Ready to get started?
 

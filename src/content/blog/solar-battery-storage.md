@@ -32,7 +32,7 @@ Walk into any solar shop in Nairobi, and you'll see at least five different batt
 
 ### Lithium-Ion (LiFePO4) — The Best Choice
 
-Lithium batteries are the gold standard. They last 10–15 years, you can use up to 80% of their capacity, and they need zero maintenance. They're expensive upfront but cheaper over time because you won't replace them every few years.
+Lithium batteries are the gold standard. They last 20–25 years, you can use up to 80% of their capacity, and they need zero maintenance. They're expensive upfront but cheaper over time because you won't replace them every few years.
 
 **Pros:** Long lifespan, deep discharge, lightweight, efficient, no maintenance.  
 **Cons:** Higher upfront cost.  
@@ -40,7 +40,7 @@ Lithium batteries are the gold standard. They last 10–15 years, you can use up
 
 ### Lead-Acid — The Budget Option
 
-Lead-acid batteries are the cheapest to buy, but they don't last. You can only use 50% of their capacity, and they need regular maintenance. In Kenya's heat, they typically die after 3–5 years. Over 15 years, you'll buy them three or four times.
+Lead-acid batteries are the cheapest to buy, but they don't last. You can only use 50% of their capacity, and they need regular maintenance. In Kenya's heat, they typically die after 5–10 years. Over 15 years, you'll buy them three or four times.
 
 **Pros:** Cheap upfront, widely available.  
 **Cons:** Short life, heavy, needs maintenance, only 50% usable.  
@@ -48,7 +48,7 @@ Lead-acid batteries are the cheapest to buy, but they don't last. You can only u
 
 ### Gel Batteries — The Middle Ground
 
-Gel batteries are maintenance-free and last longer than standard lead-acid. They're a good compromise if you can't afford lithium yet. But they still only give you 50% usable capacity and need to be replaced every 5–7 years.
+Gel batteries are maintenance-free and last longer than standard lead-acid. They're a good compromise if you can't afford lithium yet. But they still only give you 50% usable capacity and need to be replaced every 10–15 years.
 
 **Pros:** Maintenance-free, spill-proof.  
 **Cons:** Still limited to 50% discharge, slower charging.  
@@ -82,7 +82,7 @@ Lithium is more expensive upfront but cheaper in the long run. This is the math 
 
 ## Which one should you buy?
 
-**If you have the budget:** Go lithium (LiFePO4). Brands like Pylontech, Dyness, and Huawei are reliable and widely available. It's the best investment you'll make.
+**If you have the budget:** Go lithium (LiFePO4). Brands like Pylontech, Dyness,Deye,BYD,Jinko and Huawei LUNA are reliable and widely available. It's the best investment you'll make.
 
 **If you're on a tight budget:** Buy gel batteries. They're better than flooded lead-acid and you can upgrade to lithium later.
 

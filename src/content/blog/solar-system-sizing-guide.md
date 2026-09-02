@@ -12,11 +12,11 @@ If you've ever asked a solar company for a quote and gotten three wildly differe
 
 <div class="stat-grid">
   <div class="stat-card">
-    <span class="stat-num">4.5–5.5</span>
+    <span class="stat-num">6.5–7.5</span>
     <span class="stat-label">Peak sun hours per day across most of Kenya</span>
   </div>
   <div class="stat-card">
-    <span class="stat-num">3–6 yrs</span>
+    <span class="stat-num">2–5 yrs</span>
     <span class="stat-label">Typical payback period on a residential system</span>
   </div>
   <div class="stat-card">
@@ -39,7 +39,7 @@ Once you know your daily consumption in kWh, sizing follows a fairly predictable
 
 **System size (kWp) = Daily energy need (kWh) ÷ (peak sun hours × system efficiency)**
 
-In Nairobi and most of Kenya, peak sun hours average around 4.5–5, and system efficiency (accounting for inverter losses, wiring, dust, and temperature) typically sits around 75–80%. So a home consuming 10 kWh a day would need roughly a 3 kWp system to cover it comfortably.
+In Nairobi and most of Kenya, peak sun hours average around 6.5–7, and system efficiency (accounting for inverter losses, wiring, dust, and temperature) typically sits around 75–80%. So a home consuming 10 kWh a day would need roughly a 3 kWp system to cover it comfortably.
 
 Try it yourself below — tick the appliances you actually run, and the calculator will estimate your daily load, a recommended system size, and a rough cost range.
 
@@ -93,7 +93,7 @@ Try it yourself below — tick the appliances you actually run, and the calculat
 
 **The inverter** is the component doing the real work behind the scenes. It converts DC power from your panels into the AC power your appliances actually use, and in a hybrid setup, it also manages how power flows between solar, battery, and grid. A cheap inverter is the single most common point of failure in underperforming systems — it's not the part to cut corners on.
 
-![Inverter and battery system](https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&q=80)
+<img src="/images/diffinverters.png" alt="Solar inverter installation" style="width: 100% height: auto; border-radius: 10px;">
 
 **Batteries** store excess daytime generation for use at night or during outages. Lithium-ion has largely replaced lead-acid for new installations: it handles deeper discharge cycles, needs far less maintenance, and lasts significantly longer, even though the upfront cost is higher.
 
@@ -126,9 +126,9 @@ Pricing varies by installer, panel brand, and battery chemistry, but here's a re
     <tr><th>System size</th><th>Typical household fit</th><th>Rough cost (KSh)</th></tr>
   </thead>
   <tbody>
-    <tr><td>1–2 kWp</td><td>Small home, lights + electronics</td><td>150,000 – 300,000</td></tr>
-    <tr><td>3–5 kWp</td><td>Standard family home with fridge, pump</td><td>350,000 – 650,000</td></tr>
-    <tr><td>6–10 kWp</td><td>Larger home or small business</td><td>700,000 – 1,300,000</td></tr>
+    <tr><td>1–2 kWp</td><td>Small home, lights + electronics</td><td>30,000 – 150,000</td></tr>
+    <tr><td>3–5 kWp</td><td>Standard family home with fridge, pump</td><td>150,000 – 300,000</td></tr>
+    <tr><td>6–10 kWp</td><td>Larger home or small business</td><td>300,000 – 450,000</td></tr>
   </tbody>
 </table>
 
@@ -138,7 +138,7 @@ These figures include panels, inverter, a modest battery bank, mounting, and ins
 
 A typical residential install runs 1–3 days. Day one covers mounting the racking and panels, running conduit, and positioning the inverter and battery. Day two is wiring, earthing, and commissioning — this is when the installer tests the system under load and walks you through the monitoring app. For larger commercial jobs, add a few days for structural assessment and permitting.
 
-![Solar installation team](https://images.unsplash.com/photo-1598614186910-7cb5d6a8cd66?w=1200&q=80)
+<img src="/images/solar-install.jfif" alt="Solar installation team" style="width: 100% height: auto;">
 
 ## Maintenance is lighter than people expect
 
@@ -150,7 +150,7 @@ If upfront cost is the barrier, most Kenyan solar providers now offer installmen
 
 ## Mistakes worth avoiding
 
-The most common one is chasing the cheapest quote without checking what's actually in it — inverter brand, battery chemistry, and warranty terms vary enormously between quotes that look similar on paper at first glance. Two "5kWp systems" priced 200,000 shillings apart are rarely equal; one is usually cutting corners on the inverter or using a shorter-lived battery chemistry to hit that lower number.
+The most common one is chasing the cheapest quote without checking what's actually in it — inverter brand, battery chemistry, and warranty terms vary enormously between quotes that look similar on paper at first glance. Two "5kWp systems" priced 70,000 shillings apart are rarely equal; one is usually cutting corners on the inverter or using a shorter-lived battery chemistry to hit that lower number.
 
 The second is skipping a proper site assessment. A quote given over the phone, without anyone seeing your roof orientation, shading from neighboring buildings or trees, or your actual appliance load, is a guess dressed up as a design. Roof angle and shading in particular can quietly cut real-world output well below the manufacturer's rated figures, and no phone call can catch that.
 
@@ -160,7 +160,7 @@ The third is ignoring warranty and after-sales support entirely. A panel with a 
 
 Sizing a solar system doesn't need to feel like guesswork. Start with your actual consumption, understand what each component is doing and why it costs what it costs, and treat any quote that skips a site visit with healthy skepticism. The calculator above will get you in the right neighborhood — a proper assessment will get you the exact number.
 
-Ready for an accurate, no-obligation quote based on your real roof and load? [Book a free site assessment](/#contact) with Solar Prime Solutions.
+Ready for an accurate, no-obligation quote based on your real roof and load? [Book a site assessment](/#contact) with Solar Prime Solutions.
 
 <style>
   .stat-grid {
